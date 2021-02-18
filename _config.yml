@@ -1,23 +1,22 @@
 # main text of home
-name: John Doe
-bio: A Man who travels the world eating noodles
+name: 廢物到工程師的一大步
+bio: 露營區管理人 + 工程師 + 爸爸，斜槓中
 
 # twitter summary info
-description: A blog about technology and stuff related
+description: 改變很難，因為你需要改變你自己，同時改變也很簡單，因為你只需要改變你自己。
 
 # if it's an external image, update below for true
 # better with square images
 external-image: false
-picture: assets/images/profile.jpg
+picture: assets/images/avatar.jpg
 
 # If you want to include your resume, set to true
 # and specify source (external or local).
 resume: true
 resume-external: true
-resume-url: https://google.com/?q=my+resume
+resume-url: https://www.cakeresume.com/bag571ivy3470
 
-url: https://sergiokopplin.github.io/indigo
-# your url: https://USERNAME.github.io
+url: https://Lawa0921.github.io
 
 permalink: /:title/
 
@@ -30,41 +29,35 @@ permalink: /:title/
 
 # if you don't want comments in your posts, leave categories empty
 disqus:
-  shortname: mydisqus # enter this from your disqus account
+  shortname: lawa0921 # enter this from your disqus account
   categories: [blog, project] # only show disqus for posts that have these categories
 
 # if you don't have any of social below, comment the line
-facebook: myfacebook
-twitter: mytwitter
-# instagram: myinstagram
+facebook: https://www.facebook.com/Lawa0921/
+# twitter: mytwitter
+instagram: https://www.instagram.com/lin_chi_ting/
 # pinterest: mypinterest
-# linkedin: mylinkedin
+linkedin: https://www.linkedin.com/in/gorden-ting/
 # youtube: myyoutube
 # spotify: myspotify
-github: mygithub
+github: https://github.com/Lawa0921
 # gitlab: mygitlab
 # lastfm: mylastfm
 # stackoverflow: 7044681/mystackoverflow
 # quora: userquora
 # reddit: username
-medium: medium
+medium: https://medium.com/%E5%BB%A2%E7%89%A9%E5%88%B0%E5%B7%A5%E7%A8%8B%E5%B8%AB%E7%9A%84%E9%80%B2%E5%8C%96%E9%81%8E%E7%A8%8B
 # vimeo: myvimeo
 # lanyrd: mylanyrd
-email: myemail@gmail.com
+email: bag571ivy3470@gmail.com
 
 authors:
-  johndoe:
-    name: John Doe
-    bio: A Man who travels the world eating noodles
+  lawa0921:
+    name: Lawa0921
+    bio: 露營區管理人 + 工程師 + 爸爸，斜槓中
     external-image: false
-    picture: assets/images/profile.jpg
-    twitter: johndoe
-  jamesfoster:
-    name: James Foster
-    bio: A Man who develops software with coffee
-    external-image: false
-    picture: assets/images/james.jpg
-    twitter: jamesfoster
+    picture: assets/images/avatar.jpg
+    facebook: https://www.facebook.com/Lawa0921/
 
 # do you want a larger site? change the option below
 # options: [normal, large] | default: normal
