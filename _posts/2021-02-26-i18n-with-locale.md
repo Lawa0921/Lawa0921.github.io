@@ -58,7 +58,7 @@ I18n.method(:with_locale).source.display
   
 再說的白話點就是  
   
-當生出一個 object 時我們有請 I18n 跟 en 來生  
+當生出一個 object 時我們有請 I18n 跟 zh-TW 來生  
 但是其實 object 被生完之後並不知道他實際上屬於哪個語系的  
 所以他就會再去問 I18n，是哪一個語系把它生出來的  
 但是這時候 I18n 這個傢伙生活比較亂，他有很多個對象分別是 en zh-TW zh-HK ... etc，他已經忘記生出 object 拿到的語系是什麼了  
