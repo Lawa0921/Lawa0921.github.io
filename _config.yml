@@ -2,19 +2,11 @@
 title: Misstravel
 email: misstravel0921@gmail.com
 line: misstravel0921
-description: 首頁底下描述
 baseurl: "" # the subpath of your site, e.g. /blog
 url: # the base hostname & protocol for your site
 author:
-street_address: 苗栗縣泰安鄉大興村高熊卡 6 號
-city: 苗栗
-state: TW
-zip_code: 365
-country: Taiwan
-phone: 0905-108-958
 
 # homepage tiles
-tiles-source: pages # accepts "posts" or "pages"
 tiles-count: 6
 
 # social settings (key must match name of font awesome icon)
@@ -23,13 +15,7 @@ tiles-count: 6
 # You need to restart jekyll for changes to have an effect
 socials:
   GitHub: https://github.com/Lawa0921
-  GitLab:
-  Google-Plus: 
-  Instagram:
-  LinkedIn: 
-  Twitter: 
   Facebook: https://www.facebook.com/misstravel0921
-  Slack:
 
 # build settings
 markdown: kramdown

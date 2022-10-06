@@ -1,12 +1,12 @@
 ---
-layout: allposts
+layout: rooms
 title: 房型展示
-landing-title: 'All posts'
+landing-title: '房型展示'
 nav-menu: true
 description: null
 image: null
 author: null
-show_tile: false
+show_tile: true
 ---
 
-<h1>All posts</h1>
+<h1>房型展示</h1>
