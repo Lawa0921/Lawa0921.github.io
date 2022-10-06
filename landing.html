@@ -23,8 +23,14 @@ nav-menu: true
 					<header class="major">
 						<h1>{{ page.title }}</h1>
 					</header>
-					<div class="content">
-						{{ page.description }}
+					<div class="container">
+						<div class="row">
+							{% for info in site.infos %}
+								<div class="col-4 col-md-3 col-lg-2">
+									<a href="{{ info.url | absolute_url }}">{{ info.title }}</a>
+								</div>
+							{% endfor %}
+						</div>
 					</div>
 				</div>
 			</section>
