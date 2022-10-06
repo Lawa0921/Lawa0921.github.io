@@ -22,6 +22,8 @@ collections:
     output: true
   sale_items:
     output: true
+  infos:
+    output: true
 
 # build settings
 markdown: kramdown
