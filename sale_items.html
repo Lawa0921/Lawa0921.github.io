@@ -1,3 +1,13 @@
+---
+title: 密式柑仔店
+landing-title: '密式柑仔店'
+nav-menu: true
+description: null
+image: null
+author: null
+show_tile: true
+---
+
 <!DOCTYPE html>
 <!--
     Forty by HTML5 UP
@@ -13,7 +23,7 @@
       <!-- One -->
       <section id="one">
         <div class="inner">
-          {% for sale_item in site.collections.sale_items %}
+          {% for sale_item in site.sale_items %}
             {% if sale_item.title != 404 %}
               <header class="major">
                 <h1>{{ sale_item.title }}</h1>
@@ -29,3 +39,4 @@
     {% include footer.html %}
   </body>
 </html>
+

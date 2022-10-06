@@ -17,6 +17,12 @@ socials:
   GitHub: https://github.com/Lawa0921
   Facebook: https://www.facebook.com/misstravel0921
 
+collections:
+  rooms:
+    output: true
+  sale_items:
+    output: true
+
 # build settings
 markdown: kramdown
 
