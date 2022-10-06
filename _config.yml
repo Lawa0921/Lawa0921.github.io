@@ -29,6 +29,8 @@ collections:
 markdown: kramdown
 
 sass:
+  load_paths:
+    - _sass
   style: compressed
 
 exclude:
