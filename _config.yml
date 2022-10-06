@@ -26,6 +26,8 @@ collections:
 
 # build settings
 markdown: kramdown
+kramdown:
+  input: GFM
 
 sass:
   load_paths:
