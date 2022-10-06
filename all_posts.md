@@ -1,6 +1,6 @@
 ---
 layout: allposts
-title: All posts
+title: 房型展示
 landing-title: 'All posts'
 nav-menu: true
 description: null

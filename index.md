@@ -1,7 +1,7 @@
 ---
 layout: home
-title: Home
-landing-title: 'Hi, my name is Forty'
+title: 首頁
+landing-title: '密式旅行'
 description: null
 image: null
 author: null

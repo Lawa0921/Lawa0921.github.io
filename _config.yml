@@ -1,14 +1,15 @@
 # site settings
-title: Forty
+title: Misstravel
 subtitle: by HTML5 UP
-email: misstravekl0921@gmail.com
-description: A responsive site template designed by HTML5 Up<br /> and released under the Creative Commons.
+email: misstravel0921@gmail.com
+line: misstravel0921
+description: 首頁底下描述
 baseurl: "" # the subpath of your site, e.g. /blog
 url: # the base hostname & protocol for your site
 author:
 street_address: 苗栗縣泰安鄉大興村高熊卡 6 號
 city: 苗栗
-state: TN
+state: TW
 zip_code: 365
 country: Taiwan
 phone: 0905-108-958
@@ -22,7 +23,7 @@ tiles-count: 6
 # Icons are not shown if value is empty
 # You need to restart jekyll for changes to have an effect
 socials:
-  GitHub: 
+  GitHub: https://github.com/Lawa0921
   GitLab:
   Google-Plus: 
   Instagram:
