@@ -2,8 +2,8 @@
 title: 房型展示
 landing-title: '房型展示'
 nav-menu: true
-description: null
-image: null
+description: 密式旅行，位於群山的住宿環境
+image: assets/images/rooms.jpg
 author: null
 show_tile: true
 ---
@@ -18,23 +18,46 @@ show_tile: true
   {% include head.html %}
   <body>
     {% include header.html %} 
-    <!-- Main -->
     <div id="main" class="alt">
-      <!-- One -->
-      <section id="one">
-        <div class="inner">
-          {% for room in site.rooms %}
-            {% if room.title != 404 %}
-              <header class="major">
-                <h1>{{ room.title }}</h1>
-              </header>
-              {% if room.image %}<span class="image main"><img src="{{ site.baseurl }}/{{ room.image }}" alt="" /></span>{% endif %}
-              {% if room.date %}<p>{{ room.date }}</p>{% endif %}
-              <p>{{ room.content }}</p>
-            {% endif %}
-          {% endfor %}
+      <div  class="inner">
+        <header class="major">
+          <h1>{{ page.title }}</h1>
+        </header>
+        <div class="container-fluid">
+          <div class="row">
+            {% for room in site.rooms %}
+              <div class="col-12 col-md-6 p-3">
+                <div class="rounded list-item" style="border: 3px solid #dee2e6">
+                  <h2 class="text-center mb-0 p-2">{{ room.title }}</h2>
+                  <span class="image"><img src="{{ site.baseurl }}/{{ room.main_image }}" alt=""></span>
+                  <div class="container-fluid">
+                    <div class="row">
+                      <div class="col-12 col-lg-6 text-center font-lg">
+                        &#128081; 訂價：{{ room.standard_price }}
+                      </div>
+                      <div class="col-12 col-lg-6 text-center font-lg">
+                        &#129351; 連假：{{ room.standard_price }}
+                      </div>
+                      <div class="col-12 col-lg-6 text-center font-lg">
+                        &#129352; 假日：{{ room.holiday_price }}
+                      </div>
+                      <div class="col-12 col-lg-6 text-center font-lg">
+                        &#129353; 平日：{{ room.weekday_price }}
+                      </div>
+                      <div class="col-12 col-lg-6 text-center font-lg">
+                        &#127968; 房間總數：{{ room.number_of_rooms }}
+                      </div>
+                      <div class="col-12 col-lg-6 text-center font-lg">
+                        &#128101; 住房人數：{{ room.number_of_people }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
         </div>
-      </section>
+      </div>
     </div>
     {% include footer.html %}
   </body>
