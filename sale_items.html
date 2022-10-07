@@ -14,29 +14,30 @@ show_tile: true
     html5up.net | @ajlkn
     Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
   -->
-<html>
-  {% include head.html %}
-  <body>
-    {% include header.html %} 
-    <!-- Main -->
-    <div id="main" class="alt">
-      <!-- One -->
-      <section id="one">
-        <div class="inner">
-          {% for sale_item in site.sale_items %}
-            {% if sale_item.title != 404 %}
-              <header class="major">
-                <h1>{{ sale_item.title }}</h1>
-              </header>
-              {% if sale_item.image %}<span class="image main"><img src="{{ site.baseurl }}/{{ sale_item.image }}" alt="" /></span>{% endif %}
-              {% if sale_item.date %}<p>{{ sale_item.date }}</p>{% endif %}
-              <p>{{ sale_item.content }}</p>
-            {% endif %}
-          {% endfor %}
+  <html>
+    {% include head.html %}
+    <body>
+      {% include header.html %} 
+      <div id="main" class="alt">
+        <div  class="inner">
+          <header class="major">
+            <h1 class="font-title">{{ page.title }}</h1>
+          </header>
+          <div class="container-fluid">
+            <div class="row">
+              {% for sale_item in site.sale_items %}
+                <div class="col-12 col-md-6 p-3">
+                  <div class="rounded list-item">
+                    <h2 class="text-center mb-0 p-2">{{ sale_item.title }}</h2>
+                    <!-- <span class="image"><img src="{{ site.baseurl }}/{{ sale_item.main_image }}" alt=""></span> -->
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
         </div>
-      </section>
-    </div>
-    {% include footer.html %}
-  </body>
-</html>
+      </div>
+      {% include footer.html %}
+    </body>
+  </html>
 
