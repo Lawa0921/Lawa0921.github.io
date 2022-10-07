@@ -5,6 +5,9 @@ line: misstravel0921
 baseurl: "" # the subpath of your site, e.g. /blog
 url: # the base hostname & protocol for your site
 author:
+phone: 0905108958
+role_url: "infos/2022-10-06-roles.html"
+account_url: "infos/2022-10-06-account.html"
 
 # homepage tiles
 tiles-count: 6
