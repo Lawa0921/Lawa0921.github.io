@@ -1,20 +1,17 @@
 # site settings
-title: Forty
-subtitle: by HTML5 UP
-email: misstravekl0921@gmail.com
-description: A responsive site template designed by HTML5 Up<br /> and released under the Creative Commons.
+title: Misstravel
+email: misstravel0921@gmail.com
+line: misstravel0921
 baseurl: "" # the subpath of your site, e.g. /blog
 url: # the base hostname & protocol for your site
 author:
-street_address: 苗栗縣泰安鄉大興村高熊卡 6 號
-city: 苗栗
-state: TN
-zip_code: 365
-country: Taiwan
-phone: 0905-108-958
+phone: 0905108958
+role_url: "infos/2022-10-06-roles.html"
+account_url: "infos/2022-10-06-account.html"
+set_menu_url: "infos/2022-10-06-set-menu-info.html"
+menu_url: "infos/2022-10-06-menu.html"
 
 # homepage tiles
-tiles-source: pages # accepts "posts" or "pages"
 tiles-count: 6
 
 # social settings (key must match name of font awesome icon)
@@ -22,19 +19,23 @@ tiles-count: 6
 # Icons are not shown if value is empty
 # You need to restart jekyll for changes to have an effect
 socials:
-  GitHub: 
-  GitLab:
-  Google-Plus: 
-  Instagram:
-  LinkedIn: 
-  Twitter: 
   Facebook: https://www.facebook.com/misstravel0921
-  Slack:
+  Instagram: https://www.instagram.com/misstravel_miaoli
+
+collections:
+  rooms:
+    output: true
+  infos:
+    output: true
 
 # build settings
 markdown: kramdown
+kramdown:
+  input: GFM
 
 sass:
+  load_paths:
+    - _sass
   style: compressed
 
 exclude:

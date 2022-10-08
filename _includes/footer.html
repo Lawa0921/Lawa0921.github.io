@@ -1,72 +1,7 @@
-<!-- Contact -->
-<section id="contact">
-	<div class="inner">
-		<section>
-			<form action="https://formspree.io/{{ site.email }}" method="POST">
-				<div class="field half first">
-					<label for="name">Name</label>
-					<input type="text" name="name" id="name" />
-				</div>
-				<div class="field half">
-					<label for="email">Email</label>
-					<input type="text" name="_replyto" id="email" />
-				</div>
-				<div class="field">
-					<label for="message">Message</label>
-					<textarea name="message" id="message" rows="6"></textarea>
-				</div>
-				<ul class="actions">
-					<li><input type="submit" value="Send Message" class="special" /></li>
-					<li><input type="reset" value="Clear" /></li>
-				</ul>
-			</form>
-		</section>
-		<section class="split">
-			<section>
-				<div class="contact-method">
-					<span class="icon alt fa-envelope"></span>
-					<h3>Email</h3>
-					<a href="mailto:{{ site.email }}">{{ site.email }}</a>
-				</div>
-			</section>
-			<section>
-				<div class="contact-method">
-					<span class="icon alt fa-phone"></span>
-					<h3>Phone</h3>
-					<a href="tel:{{ site.phone }}">{{ site.phone }}</a>
-				</div>
-			</section>
-			<section>
-				<div class="contact-method">
-					<span class="icon alt fa-home"></span>
-					<h3>Address</h3>
-					<span>
-					{% if site.street_address %}
-					    {{ site.street_address }}<br />
-					{% endif %}
-					{% if site.city %}
-					    {{ site.city }},
-					{% endif %}
-					{% if site.state %}
-					    {{ site.state }} 
-					{% endif %}
-					{% if site.zip_code %}
-					    {{ site.zip_code }}<br />
-					{% endif %}
-					{% if site.country %}
-					    {{ site.country }}
-					{% endif %}
-					</span>
-				</div>
-			</section>
-		</section>
-	</div>
-</section>
-
 <!-- Footer -->
 	<footer id="footer">
 		<div class="inner">
-			<ul class="icons">
+			<ul class="icons align-center">
 				{% for key_value in site.socials %}
 					{% if key_value[1] %}
 						<li>
@@ -76,12 +11,21 @@
 						</li>
 					{% endif %}
 				{% endfor %}
-			</ul>
-			<ul class="copyright">
-				<li>&copy; {{ site.title }} {{ site.subtitle }}</li>
-				<li>Design: <a href="https://html5up.net" target="_blank">HTML5 UP</a></li>
-				<li>Jekyll integration: <a href="http://andrewbanchi.ch" target="_blank">Andrew Banchich</a></li>
-
+				<li>
+					<a href="tel:{{ site.phone }}" class="icon alt fa-phone" target="_blank" rel="noopener noreferrer"></a>
+				</li>
+				<li>
+					<a href="mailto:{{ site.email }}" class="icon alt fa-envelope" target="_blank" rel="noopener noreferrer"></a>
+				</li>
+				<li>
+					<a href="https://www.google.com.tw/maps/place/%E5%AF%86%E5%BC%8F%E6%97%85%E8%A1%8C/@24.418704,120.9115453,17z/data=!3m1!4b1!4m8!3m7!1s0x3468ffc8da78a9d1:0x86fdb6fa63426b73!5m2!4m1!1i2!8m2!3d24.418704!4d120.913734?hl=zh-TW" class="icon alt fa-home" target="_blank" rel="noopener noreferrer"></a>
+				</li>
+				<li>
+					<strong>Line ID: misstravel0921</strong>
+				</li>
+				<li>
+					<strong>&copy; {{ site.title }}</strong>
+				</li>
 			</ul>
 		</div>
 	</footer>
@@ -96,3 +40,5 @@
 	<script src="{{ "assets/js/util.js" | absolute_url }}"></script>
 	<!--[if lte IE 8]><script src="{{ "assets/js/ie/respond.min.js" | absolute_url }}"></script><![endif]-->
 	<script src="{{ "assets/js/main.js" | absolute_url }}"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
