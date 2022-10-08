@@ -46,4 +46,19 @@
   background-color: _palette(bg);
   border: 5px solid _palette(border);
   border-radius: 8px;
+  padding: 10px;
+}
+
+.modal-header {
+  background-color: _palette(bg);
+  border: none;
+  display: block;
+}
+
+.modal-body {
+  background-color: _palette(bg);
+}
+
+.modal-content {
+  border: none;
 }
