@@ -22,8 +22,6 @@ socials:
 collections:
   rooms:
     output: true
-  sale_items:
-    output: true
   infos:
     output: true
 

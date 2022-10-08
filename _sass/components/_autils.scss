@@ -41,3 +41,9 @@
 .content {
   margin: 30px 0px;
 }
+
+.modal-container {
+  background-color: _palette(bg);
+  border: 5px solid _palette(border);
+  border-radius: 8px;
+}

@@ -23,16 +23,62 @@ show_tile: true
           <header class="major">
             <h1 class="font-title">{{ page.title }}</h1>
           </header>
-          <div class="container-fluid">
-            <div class="row">
-              {% for sale_item in site.sale_items %}
-                <div class="col-12 col-md-6 p-3">
-                  <div class="rounded list-item">
-                    <h2 class="text-center mb-0 p-2">{{ sale_item.title }}</h2>
-                    <!-- <span class="image"><img src="{{ site.baseurl }}/{{ sale_item.main_image }}" alt=""></span> -->
-                  </div>
-                </div>
-              {% endfor %}
+          <div class="container">
+            <div class="row align-items-center" style="min-height: 500px">
+              <div class="col-6 col-md-4 text-center">
+                <button type="button" class="button special" data-toggle="modal" data-target="#guide_1" data-whatever="@guide_1" style="font-size: 28px;">烹飪組合</button>
+              </div>
+              <div class="col-6 col-md-4 text-center">
+                <button type="button" class="button" data-toggle="modal" data-target="#guide_2" data-whatever="@guide_2" style="font-size: 28px;">烤肉組合</button>
+              </div>
+              <div class="col-6 col-md-4 text-center">
+                <button type="button" class="button special" data-toggle="modal" data-target="#guide_3" data-whatever="@guide_3" style="font-size: 28px;">寢具組合</button>
+              </div>
+              <div class="col-6 col-md-4 text-center">
+                <button type="button" class="button" data-toggle="modal" data-target="#guide_4" data-whatever="@guide_4" style="font-size: 28px;">各式雜貨</button>
+              </div>
+              <div class="col-6 col-md-4 text-center">
+                <button type="button" class="button special" data-toggle="modal" data-target="#guide_5" data-whatever="@guide_5" style="font-size: 28px;">代訂食材</button>
+              </div>
+              <div class="col-6 col-md-4 text-center">
+                <button type="button" class="button" data-toggle="modal" data-target="#guide_6" data-whatever="@guide_6" style="font-size: 28px;">代訂合菜</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal fade mt-5" id="guide_1" role="dialog" aria-labelledby="guide_1ModalLabel">
+            <div class="modal-dialog text-center modal-container" role="document" style="max-width: 960px;">
+              <h2>烹飪組合</h2>
+            </div>
+          </div>
+
+          <div class="modal fade mt-5" id="guide_2" role="dialog" aria-labelledby="guide_1ModalLabel">
+            <div class="modal-dialog text-center modal-container" role="document" style="max-width: 960px;">
+              <h2>烤肉組合</h2>
+            </div>
+          </div>
+
+          <div class="modal fade mt-5" id="guide_3" role="dialog" aria-labelledby="guide_1ModalLabel">
+            <div class="modal-dialog text-center modal-container" role="document" style="max-width: 960px;">
+              <h2>寢具組合</h2>
+            </div>
+          </div>
+
+          <div class="modal fade mt-5" id="guide_4" role="dialog" aria-labelledby="guide_1ModalLabel">
+            <div class="modal-dialog text-center modal-container" role="document" style="max-width: 960px;">
+              <h2>各式雜貨</h2>
+            </div>
+          </div>
+
+          <div class="modal fade mt-5" id="guide_5" role="dialog" aria-labelledby="guide_1ModalLabel">
+            <div class="modal-dialog text-center modal-container" role="document" style="max-width: 960px;">
+              <h2>代訂食材</h2>
+            </div>
+          </div>
+
+          <div class="modal fade mt-5" id="guide_6" role="dialog" aria-labelledby="guide_1ModalLabel">
+            <div class="modal-dialog text-center modal-container" role="document" style="max-width: 960px;">
+              <h2>代訂合菜</h2>
             </div>
           </div>
         </div>
