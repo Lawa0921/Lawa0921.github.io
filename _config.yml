@@ -20,6 +20,7 @@ tiles-count: 6
 # You need to restart jekyll for changes to have an effect
 socials:
   Facebook: https://www.facebook.com/misstravel0921
+  Instagram: https://www.instagram.com/misstravel_miaoli
 
 collections:
   rooms:
