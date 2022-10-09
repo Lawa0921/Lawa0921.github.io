@@ -2,7 +2,7 @@
 <div id="wrapper">
 	<!-- Header -->
 	<header id="header"{% if page.layout == "landing" %} class="alt style2"{% endif %}{% if page.layout == "home" %} class="alt"{% endif %}>
-		<a href="{{ site.url  }}" class="logo">
+		<a href="{{ 'index.html' | relative_url }}" class="logo">
 			<strong>{{ site.title }}</strong>
 		</a>
 		<nav>
@@ -14,7 +14,7 @@
 		<ul class="links">
 			{% for page in site.pages %}
 				{% if page.layout == "home" %}
-					<li><a href="{{ site.url }}">{{ page.title }}</a></li>
+					<li><a href="{{ 'index.html' | relative_url }}">{{ page.title }}</a></li>
 				{% endif %}
 			{% endfor %}
 			{% for page in site.pages %}
