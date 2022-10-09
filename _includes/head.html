@@ -1,7 +1,16 @@
 <head>
-	<title>{% if page.meta_title %}{{ page.meta_title }} | {% endif %}{{ site.title }}</title>
+	{% if page.meta_title %}
+		<title>{{ page.meta_title }} | {{ site.title }}</title>
+	{% elsif site.meta_title %}
+		<title>{{ site.meta_title }} | {{ site.title }}</title>
+	{% endif %}
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	{% if page.meta_description %}
+		<meta name="description" content="{{ page.meta_description }}">
+	{% elsif site.meta_description %}
+		<meta name="description" content="{{ site.meta_description }}">
+	{% endif %}
 	<meta name="msapplication-TileColor" content="#da532c">
 	<meta name="theme-color" content="#ffffff">
 	<link rel="stylesheet" href="{{ "assets/css/main.css" | relative_url }}" />
