@@ -30,6 +30,8 @@ collections:
     output: true
   infos:
     output: true
+  announcements:
+    output: true
 
 # build settings
 markdown: kramdown

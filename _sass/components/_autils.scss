@@ -1,3 +1,11 @@
+.font-xxs {
+  font-size: 12px;
+}
+
+.font-xs {
+  font-size: 16px;
+}
+
 .font-sm {
   font-size: 20px;
 }
@@ -61,6 +69,14 @@
 
 .modal-content {
   border: none;
+}
+
+.jumbotron {
+  background-color: _palette(bg);
+}
+
+.card {
+  background-color: _palette(bg);
 }
 
 .lightbox-gallery {
