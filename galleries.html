@@ -7,14 +7,6 @@ image: assets/images/galleries.jpg
 author: null
 show_tile: true
 order: 4
-images: [
-  "assets/images/galleries/gallery_1.jpg", "assets/images/galleries/gallery_2.jpg", "assets/images/galleries/gallery_3.jpg", "assets/images/galleries/gallery_4.jpg", "assets/images/galleries/gallery_5.jpg", "assets/images/galleries/gallery_6.jpg",
-  "assets/images/galleries/gallery_7.jpg", "assets/images/galleries/gallery_8.jpg", "assets/images/galleries/gallery_9.jpg", "assets/images/galleries/gallery_10.jpg", "assets/images/galleries/gallery_11.jpg", "assets/images/galleries/gallery_12.jpg",
-  "assets/images/galleries/gallery_13.jpg", "assets/images/galleries/gallery_14.jpg", "assets/images/galleries/gallery_15.jpg", "assets/images/galleries/gallery_16.jpg", "assets/images/galleries/gallery_17.jpg", "assets/images/galleries/gallery_18.jpg",
-  "assets/images/galleries/gallery_19.jpg", "assets/images/galleries/gallery_20.jpg", "assets/images/galleries/gallery_21.jpg", "assets/images/galleries/gallery_22.jpg", "assets/images/galleries/gallery_23.jpg", "assets/images/galleries/gallery_24.jpg",
-  "assets/images/galleries/gallery_25.jpg", "assets/images/galleries/gallery_26.jpg", "assets/images/galleries/gallery_27.jpg", "assets/images/galleries/gallery_28.jpg", "assets/images/galleries/gallery_29.jpg", "assets/images/galleries/gallery_30.jpg",
-  "assets/images/galleries/gallery_31.jpg", "assets/images/galleries/gallery_32.jpg", "assets/images/galleries/gallery_33.jpg", "assets/images/galleries/gallery_34.jpg", "assets/images/galleries/gallery_35.jpg", "assets/images/galleries/gallery_36.jpg",
-]
 ---
 
 <!DOCTYPE html>
@@ -35,10 +27,10 @@ images: [
           </header>
           <div class="lightbox-gallery">
             <div class="row photos">
-              {% for image in page.images %}
+              {% for image in site.images_url.galleries %}
                 <div class="col-6 col-md-4 col-lg-3 item">
-                  <a href="{{ site.base_url }}/{{ image }}" data-lightbox="photos">
-                    <img class="img-fluid" src="{{ site.base_url }}/{{ image }}">
+                  <a href="{{ image.url }}" data-lightbox="photos">
+                    <img class="img-fluid" src="{{ image.url }}">
                   </a>
                 </div>
               {% endfor %}
