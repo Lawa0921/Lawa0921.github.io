@@ -47,7 +47,11 @@ order: 1
                           &#129353; 平日：{{ room.weekday_price }}
                         </div>
                         <div class="col-12 col-lg-6 text-center font-lg">
-                          &#127968; 房數：{{ room.number_of_rooms }}
+                          {% if room.is_campsite %}
+                            &#127957; 區域：{{ room.number_of_rooms }}
+                          {% else %}
+                            &#127968; 房數：{{ room.number_of_rooms }}
+                          {% endif %}
                         </div>
                         <div class="col-12 col-lg-6 text-center font-lg">
                           &#128101; 人數：{{ room.number_of_people }}
