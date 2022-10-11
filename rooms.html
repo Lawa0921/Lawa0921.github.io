@@ -32,30 +32,30 @@ order: 1
                 <div class="col-12 col-md-6 p-3">
                   <a href="{{ room.url | absolute_url }}">
                     <div class="rounded list-item">
-                      <h2 class="text-center mb-0 p-2">{{ room.title }}</h2>
+                      <h3 class="text-center mb-0 p-2">{{ room.title }}</h3>
                       <span class="image"><img src="{{ site.baseurl }}/{{ room.main_image }}" alt=""></span>
                       <div class="container-fluid">
                         <div class="row">
-                          <div class="col-12 col-lg-6 text-center font-lg">
+                          <div class="col-12 col-lg-6 text-center font-sm">
                             &#128081; 訂價：{{ room.standard_price }}
                           </div>
-                          <div class="col-12 col-lg-6 text-center font-lg">
+                          <div class="col-12 col-lg-6 text-center font-sm">
                             &#129351; 連假：{{ room.standard_price }}
                           </div>
-                          <div class="col-12 col-lg-6 text-center font-lg">
+                          <div class="col-12 col-lg-6 text-center font-sm">
                             &#129352; 假日：{{ room.holiday_price }}
                           </div>
-                          <div class="col-12 col-lg-6 text-center font-lg">
+                          <div class="col-12 col-lg-6 text-center font-sm">
                             &#129353; 平日：{{ room.weekday_price }}
                           </div>
-                          <div class="col-12 col-lg-6 text-center font-lg">
+                          <div class="col-12 col-lg-6 text-center font-sm">
                             {% if room.is_campsite %}
                               &#127957; 區域：{{ room.number_of_rooms }}
                             {% else %}
                               &#127968; 房數：{{ room.number_of_rooms }}
                             {% endif %}
                           </div>
-                          <div class="col-12 col-lg-6 text-center font-lg">
+                          <div class="col-12 col-lg-6 text-center font-sm">
                             &#128101; 人數：{{ room.number_of_people }}
                           </div>
                         </div>
