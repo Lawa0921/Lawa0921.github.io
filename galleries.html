@@ -28,25 +28,27 @@ images: [
   {% include head.html %}
   <body>
     {% include header.html %} 
-    <div id="main" class="alt">
-      <section id="one">
-        <div class="inner">
-          <header class="major text-center">
-            <h1>{{ page.title }}</h1>
-          </header>
-          <div class="lightbox-gallery">
-            <div class="row photos">
-              {% for image in page.images %}
-                <div class="col-6 col-md-4 col-lg-3 item">
-                  <a href="{{ site.base_url }}/{{ image }}" data-lightbox="photos">
-                    <img class="img-fluid" src="{{ site.base_url }}/{{ image }}">
-                  </a>
-                </div>
-              {% endfor %}
+    <div class="container">
+      <div id="main" class="alt">
+        <section id="one">
+          <div class="inner">
+            <header class="major text-center">
+              <h1>{{ page.title }}</h1>
+            </header>
+            <div class="lightbox-gallery">
+              <div class="row photos">
+                {% for image in page.images %}
+                  <div class="col-6 col-md-4 col-lg-3 item">
+                    <a href="{{ site.base_url }}/{{ image }}" data-lightbox="photos">
+                      <img class="img-fluid" src="{{ site.base_url }}/{{ image }}">
+                    </a>
+                  </div>
+                {% endfor %}
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
     </div>
     {% include footer.html %}
   </body>

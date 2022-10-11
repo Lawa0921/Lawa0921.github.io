@@ -20,49 +20,51 @@ order: 1
   {% include head.html %}
   <body>
     {% include header.html %} 
-    <div id="main" class="alt">
-      <div  class="inner">
-        <header class="major">
-          <h1 class="font-title">{{ page.title }}</h1>
-        </header>
-        <div class="container-fluid">
-          <div class="row">
-            {% for room in site.rooms %}
-              <div class="col-12 col-md-6 p-3">
-                <a href="{{ room.url | absolute_url }}">
-                  <div class="rounded list-item">
-                    <h2 class="text-center mb-0 p-2">{{ room.title }}</h2>
-                    <span class="image"><img src="{{ site.baseurl }}/{{ room.main_image }}" alt=""></span>
-                    <div class="container-fluid">
-                      <div class="row">
-                        <div class="col-12 col-lg-6 text-center font-lg">
-                          &#128081; 訂價：{{ room.standard_price }}
-                        </div>
-                        <div class="col-12 col-lg-6 text-center font-lg">
-                          &#129351; 連假：{{ room.standard_price }}
-                        </div>
-                        <div class="col-12 col-lg-6 text-center font-lg">
-                          &#129352; 假日：{{ room.holiday_price }}
-                        </div>
-                        <div class="col-12 col-lg-6 text-center font-lg">
-                          &#129353; 平日：{{ room.weekday_price }}
-                        </div>
-                        <div class="col-12 col-lg-6 text-center font-lg">
-                          {% if room.is_campsite %}
-                            &#127957; 區域：{{ room.number_of_rooms }}
-                          {% else %}
-                            &#127968; 房數：{{ room.number_of_rooms }}
-                          {% endif %}
-                        </div>
-                        <div class="col-12 col-lg-6 text-center font-lg">
-                          &#128101; 人數：{{ room.number_of_people }}
+    <div class="container">
+      <div id="main" class="alt">
+        <div  class="inner">
+          <header class="major">
+            <h1 class="font-title">{{ page.title }}</h1>
+          </header>
+          <div class="container">
+            <div class="row">
+              {% for room in site.rooms %}
+                <div class="col-12 col-md-6 p-3">
+                  <a href="{{ room.url | absolute_url }}">
+                    <div class="rounded list-item">
+                      <h2 class="text-center mb-0 p-2">{{ room.title }}</h2>
+                      <span class="image"><img src="{{ site.baseurl }}/{{ room.main_image }}" alt=""></span>
+                      <div class="container-fluid">
+                        <div class="row">
+                          <div class="col-12 col-lg-6 text-center font-lg">
+                            &#128081; 訂價：{{ room.standard_price }}
+                          </div>
+                          <div class="col-12 col-lg-6 text-center font-lg">
+                            &#129351; 連假：{{ room.standard_price }}
+                          </div>
+                          <div class="col-12 col-lg-6 text-center font-lg">
+                            &#129352; 假日：{{ room.holiday_price }}
+                          </div>
+                          <div class="col-12 col-lg-6 text-center font-lg">
+                            &#129353; 平日：{{ room.weekday_price }}
+                          </div>
+                          <div class="col-12 col-lg-6 text-center font-lg">
+                            {% if room.is_campsite %}
+                              &#127957; 區域：{{ room.number_of_rooms }}
+                            {% else %}
+                              &#127968; 房數：{{ room.number_of_rooms }}
+                            {% endif %}
+                          </div>
+                          <div class="col-12 col-lg-6 text-center font-lg">
+                            &#128101; 人數：{{ room.number_of_people }}
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </a>
-              </div>
-            {% endfor %}
+                  </a>
+                </div>
+              {% endfor %}
+            </div>
           </div>
         </div>
       </div>
