@@ -24,9 +24,11 @@ order: 3
       <section id="one">
         <div class="inner">
           <div class="jumbotron p-3 rounded">
-            <header class="major">
-              <h1 class="display-4">{{ page.title }}</h1>
-            </header>
+            <div class="container">
+              <header class="major">
+                <h1 class="display-4">{{ page.title }}</h1>
+              </header>
+            </div>
           </div>
           <div class="row mb-2">
             {% for announcement in site.announcements %}
