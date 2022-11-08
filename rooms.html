@@ -28,7 +28,8 @@ order: 1
           </header>
           <div class="container">
             <div class="row">
-              {% for room in site.rooms %}
+              {% assign rooms = site.rooms | sort: 'order' %}
+              {% for room in rooms %}
                 <div class="col-12 col-md-6 p-3">
                   <a href="{{ room.url | absolute_url }}">
                     <div class="rounded list-item">
