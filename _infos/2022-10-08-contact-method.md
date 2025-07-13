@@ -2,7 +2,9 @@
 layout: post
 meta_title: '密式旅行露營區，聯絡資訊'
 title: 聯絡我們
-description: 
+description: 查看密式旅行露營區的完整聯絡資訊，包含FB、IG、電話、地址及Email
+meta_description: 密式旅行露營區聯絡資訊：電話 0905-108-958，位於苗栗縣泰安鄉大興村，提供Facebook、Instagram、Line、Email等多元化聯繫方式
+keywords: 密式旅行聯絡, 露營區電話, 苗栗泰安露營, 露營區地址, 露營區預訂, 密式旅行FB, 密式旅行IG
 image: 
 ---
 

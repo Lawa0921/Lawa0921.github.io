@@ -42,7 +42,7 @@ images: [
                 {% for image in page.images %}
                   <div class="col-6 col-md-4 col-lg-3 item">
                     <a href="{{ site.base_url }}/{{ image }}" data-lightbox="photos">
-                      <img class="img-fluid" src="{{ site.base_url }}/{{ image }}" alt="密式旅行露營區實景 - {% if forloop.index <= 6 %}營區全景與雲海美景{% elsif forloop.index <= 12 %}露營區與住宿設施{% elsif forloop.index <= 18 %}兒童遊樂設施與休閒空間{% elsif forloop.index <= 24 %}套房與小木屋內部{% elsif forloop.index <= 30 %}戶外活動區域與景觀{% else %}夜景與特色設施{% endif %}">
+                      <img class="img-fluid" src="{{ site.base_url }}/{{ image }}" alt="密式旅行露營區實景 - {% if forloop.index <= 6 %}營區全景與雲海美景{% elsif forloop.index <= 12 %}露營區與住宿設施{% elsif forloop.index <= 18 %}兒童遊樂設施與休閒空間{% elsif forloop.index <= 24 %}套房與小木屋內部{% elsif forloop.index <= 30 %}戶外活動區域與景觀{% else %}夜景與特色設施{% endif %}" loading="lazy">
                     </a>
                   </div>
                 {% endfor %}
