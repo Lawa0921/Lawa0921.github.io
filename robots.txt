@@ -1,0 +1,12 @@
+# robots.txt for https://misstravel.me/
+
+User-agent: *
+Allow: /
+Disallow: /assets/js/
+Disallow: /assets/css/
+
+# Sitemap location
+Sitemap: https://misstravel.me/sitemap.xml
+
+# Crawl-delay for bots that support it
+Crawl-delay: 1

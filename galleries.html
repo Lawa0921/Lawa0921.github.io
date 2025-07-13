@@ -1,9 +1,11 @@
 ---
 title: 密式圖集
-meta_title: '密式旅行露營區，密式圖集'
+meta_title: '密式圖集 - 密式旅行露營區環境與設施實景照片'
 landing-title: '密式圖集'
 nav-menu: true
 description: 密式旅行，之於心中的記憶
+meta_description: '探索密式旅行露營區的美麗風景：雲海繚繞的清晨、絢麗夕陽、舒適住宿空間、兒童遊樂設施、桌遊咖啡廳等。透過精選照片集，預覽您的美好假期，感受苗栗泰安的山林之美。'
+keywords: '密式旅行照片,露營區實景,苗栗露營照片,泰安風景,雲海照片,夕陽美景,露營區設施,兒童遊戲室照片,桌遊咖啡廳,小木屋實景,套房照片,露營車位照片,山林美景'
 image: assets/images/galleries.jpg
 author: null
 show_tile: true
@@ -40,7 +42,7 @@ images: [
                 {% for image in page.images %}
                   <div class="col-6 col-md-4 col-lg-3 item">
                     <a href="{{ site.base_url }}/{{ image }}" data-lightbox="photos">
-                      <img class="img-fluid" src="{{ site.base_url }}/{{ image }}">
+                      <img class="img-fluid" src="{{ site.base_url }}/{{ image }}" alt="密式旅行露營區實景 - {% if forloop.index <= 6 %}營區全景與雲海美景{% elsif forloop.index <= 12 %}露營區與住宿設施{% elsif forloop.index <= 18 %}兒童遊樂設施與休閒空間{% elsif forloop.index <= 24 %}套房與小木屋內部{% elsif forloop.index <= 30 %}戶外活動區域與景觀{% else %}夜景與特色設施{% endif %}">
                     </a>
                   </div>
                 {% endfor %}

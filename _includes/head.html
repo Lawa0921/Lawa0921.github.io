@@ -1,23 +1,16 @@
 <head>
-	{% if page.meta_title %}
-		<title>{{ page.meta_title }} | {{ site.title }}</title>
-	{% elsif site.meta_title %}
-		<title>{{ site.meta_title }} | {{ site.title }}</title>
-	{% endif %}
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	{% if page.meta_description %}
-		<meta name="description" content="{{ page.meta_description }}">
-	{% elsif site.meta_description %}
-		<meta name="description" content="{{ site.meta_description }}">
-	{% endif %}
 	<meta name="msapplication-TileColor" content="#da532c">
 	<meta name="theme-color" content="#ffffff">
-	<meta property="og:image" content="{{ site.url }}/assets/images/rooms.jpg">
+	{% seo %}
 	<link rel="stylesheet" href="{{ "assets/css/main.css" | relative_url }}" />
 	<link rel="apple-touch-icon" sizes="180x180" href="{{ site.baseurl }}/assets/images/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="{{ site.baseurl }}/assets/images/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="{{ site.baseurl }}/assets/iamges/favicon-16x16.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="{{ site.baseurl }}/assets/images/favicon-16x16.png">
 	<link rel="manifest" href="{{ site.baseurl }}/assets/images/site.webmanifest">
 	<link rel="mask-icon" href="{{ site.baseurl }}/assets/images/safari-pinned-tab.svg" color="#5bbad5">
+	{% if page.url == "/" %}
+		{% include schema-lodging.html %}
+	{% endif %}
 </head>
