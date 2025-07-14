@@ -1,9 +1,11 @@
 ---
 title: 最新消息
-meta_title: '密式旅行露營區，密式最新消息'
+meta_title: '最新消息 - 密式旅行露營區公告與活動'
 landing-title: '最新消息'
 nav-menu: true
 description: 密式旅行，自於群山的聲音
+meta_description: '掌握密式旅行露營區的最新公告、活動資訊與優惠方案。關注我們的最新消息，讓您的苗栗泰安露營之旅更加豐富精彩。'
+keywords: '密式旅行公告,露營區消息,苗栗露營活動,泰安露營優惠,露營區更新,節日活動,季節優惠,露營公告'
 image: assets/images/announcements.jpg
 author: null
 show_tile: true
@@ -16,7 +18,7 @@ order: 3
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
-<html>
+<html lang="zh-TW">
   {% include head.html %}
   <body>
     {% include header.html %} 
@@ -42,7 +44,7 @@ order: 3
                       前往查看
                     </a>
                   </div>
-                  <img class="card-img-right flex-auto d-none d-md-block fit" alt="" style="width: 200px; height: 250px;" src="{{ announcement.image }}">
+                  <img class="card-img-right flex-auto d-none d-md-block fit" alt="{{ announcement.title }} - {{ announcement.description | truncate: 50 }}" style="width: 200px; height: 250px;" src="{{ announcement.image }}" loading="lazy">
                 </div>
               </div>
             {% endfor %}
