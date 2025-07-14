@@ -10,6 +10,8 @@
 	{% endif %}
 	<!-- RSS Feed -->
 	<link rel="alternate" type="application/rss+xml" title="{{ site.title }} RSS Feed" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
+	<!-- Critical CSS -->
+	{% include critical-css.html %}
 	<!-- Preconnect to external resources -->
 	<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
 	<link rel="preconnect" href="https://maxcdn.bootstrapcdn.com" crossorigin>
@@ -24,4 +26,5 @@
 	{% if page.url == "/" %}
 		{% include schema-lodging.html %}
 	{% endif %}
+	{% include breadcrumb-schema.html %}
 </head>
