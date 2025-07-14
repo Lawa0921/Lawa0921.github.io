@@ -61,6 +61,9 @@ sass:
     - _sass
   style: compressed
 
+# server settings
+port: 4200
+
 # plugins
 plugins:
   - jekyll-sitemap
