@@ -4,6 +4,12 @@
 	<meta name="msapplication-TileColor" content="#da532c">
 	<meta name="theme-color" content="#ffffff">
 	{% seo %}
+	<!-- Keywords meta tag for SEO -->
+	{% if page.keywords %}
+	<meta name="keywords" content="{{ page.keywords }}">
+	{% endif %}
+	<!-- RSS Feed -->
+	<link rel="alternate" type="application/rss+xml" title="{{ site.title }} RSS Feed" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
 	<!-- Preconnect to external resources -->
 	<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
 	<link rel="preconnect" href="https://maxcdn.bootstrapcdn.com" crossorigin>
