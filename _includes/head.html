@@ -12,10 +12,14 @@
 	{% endif %}
 	<!-- Meta robots -->
 	<meta name="robots" content="index, follow">
+	<!-- Enhanced SEO Tags -->
+	{% include enhanced-seo-tags.html %}
 	<!-- RSS Feed -->
 	<link rel="alternate" type="application/rss+xml" title="{{ site.title }} RSS Feed" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
 	<!-- Critical CSS -->
 	{% include critical-css.html %}
+	<!-- Performance Optimization -->
+	{% include performance-optimization.html %}
 	<!-- Preconnect to external resources -->
 	<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
 	<link rel="preconnect" href="https://maxcdn.bootstrapcdn.com" crossorigin>

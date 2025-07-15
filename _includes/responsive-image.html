@@ -1,0 +1,37 @@
+{% comment %}
+  Responsive image with srcset for better performance
+  Usage: {% include responsive-image.html image=page.main_image alt="Image description" class="my-class" %}
+{% endcomment %}
+
+{% assign base_path = include.image | remove: '.jpg' | remove: '.png' | remove: '.jpeg' %}
+{% assign extension = include.image | split: '.' | last %}
+
+<picture>
+  <!-- WebP format for modern browsers -->
+  <source type="image/webp" 
+          srcset="{{ site.baseurl }}/{{ base_path }}-320w.webp 320w,
+                  {{ site.baseurl }}/{{ base_path }}-640w.webp 640w,
+                  {{ site.baseurl }}/{{ base_path }}-960w.webp 960w,
+                  {{ site.baseurl }}/{{ base_path }}.webp 1920w"
+          sizes="(max-width: 320px) 320px,
+                 (max-width: 640px) 640px,
+                 (max-width: 960px) 960px,
+                 1920px">
+  
+  <!-- Original format fallback -->
+  <img src="{{ site.baseurl }}/{{ include.image }}" 
+       srcset="{{ site.baseurl }}/{{ base_path }}-320w.{{ extension }} 320w,
+               {{ site.baseurl }}/{{ base_path }}-640w.{{ extension }} 640w,
+               {{ site.baseurl }}/{{ base_path }}-960w.{{ extension }} 960w,
+               {{ site.baseurl }}/{{ include.image }} 1920w"
+       sizes="(max-width: 320px) 320px,
+              (max-width: 640px) 640px,
+              (max-width: 960px) 960px,
+              1920px"
+       alt="{{ include.alt }}"
+       class="{{ include.class }}"
+       loading="{{ include.loading | default: 'lazy' }}"
+       width="{{ include.width }}"
+       height="{{ include.height }}"
+       {% if include.itemprop %}itemprop="{{ include.itemprop }}"{% endif %}>
+</picture>
