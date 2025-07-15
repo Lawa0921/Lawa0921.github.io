@@ -29,9 +29,10 @@
       {% assign campsites = site.rooms | where: "is_campsite", true | where_exp: "item", "item.url != page.url" | limit: 3 %}
       {% for campsite in campsites %}
       <div class="4u 12u$(small)">
-        <a href="{{ campsite.url | relative_url }}" class="room-link">
+        <a href="{{ campsite.url | relative_url }}" class="room-link" title="預訂{{ campsite.short_title }} - 平日{{ campsite.weekday_price }}元起的{{ campsite.title }}">
           <h5>{{ campsite.short_title }}</h5>
           <p>平日 {{ campsite.weekday_price }} 元起</p>
+          <small>{{ campsite.title | truncate: 30 }}</small>
         </a>
       </div>
       {% endfor %}
@@ -44,9 +45,10 @@
       {% assign rooms = site.rooms | where: "is_campsite", false | where_exp: "item", "item.url != page.url" | limit: 3 %}
       {% for room in rooms %}
       <div class="4u 12u$(small)">
-        <a href="{{ room.url | relative_url }}" class="room-link">
+        <a href="{{ room.url | relative_url }}" class="room-link" title="預訂{{ room.short_title }} - 平日{{ room.weekday_price }}元起的{{ room.title }}">
           <h5>{{ room.short_title }}</h5>
           <p>平日 {{ room.weekday_price }} 元起</p>
+          <small>{{ room.title | truncate: 30 }}</small>
         </a>
       </div>
       {% endfor %}

@@ -4,10 +4,14 @@
 	<meta name="msapplication-TileColor" content="#da532c">
 	<meta name="theme-color" content="#ffffff">
 	{% seo %}
+	<!-- Canonical URL -->
+	<link rel="canonical" href="{{ page.url | prepend: site.url | replace: "//", "/" | replace: ":/", "://" }}">
 	<!-- Keywords meta tag for SEO -->
 	{% if page.keywords %}
 	<meta name="keywords" content="{{ page.keywords }}">
 	{% endif %}
+	<!-- Meta robots -->
+	<meta name="robots" content="index, follow">
 	<!-- RSS Feed -->
 	<link rel="alternate" type="application/rss+xml" title="{{ site.title }} RSS Feed" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
 	<!-- Critical CSS -->

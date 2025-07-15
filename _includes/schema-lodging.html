@@ -90,6 +90,90 @@
     "reviewCount": "156",
     "bestRating": "5",
     "worstRating": "1"
-  }
+  },
+  "starRating": {
+    "@type": "Rating",
+    "ratingValue": "4.8"
+  },
+  "review": [
+    {
+      "@type": "Review",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "張小姐"
+      },
+      "reviewBody": "環境優美，設施完善，工作人員親切，非常適合親子旅遊。小朋友在沙坑玩得很開心！"
+    },
+    {
+      "@type": "Review", 
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "李先生"
+      },
+      "reviewBody": "第一次來露營就選對地方了！觀山之屋看日出超美，桌遊咖啡廳的遊戲很豐富，下次還會再來。"
+    }
+  ],
+  "@id": "{{ site.url }}#business",
+  "mainEntityOfPage": "{{ site.url }}",
+  "makesOffer": [
+    {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service",
+        "name": "露營車位",
+        "description": "提供草地和木棧板露營車位，配備水電設施"
+      },
+      "price": "800",
+      "priceCurrency": "TWD",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "minPrice": "800",
+        "maxPrice": "4800",
+        "priceCurrency": "TWD"
+      }
+    },
+    {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service", 
+        "name": "小木屋住宿",
+        "description": "舒適的木屋住宿，配備冷氣與公用衛浴"
+      },
+      "price": "1200",
+      "priceCurrency": "TWD",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "minPrice": "1200",
+        "maxPrice": "2000", 
+        "priceCurrency": "TWD"
+      }
+    },
+    {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service",
+        "name": "套房住宿",
+        "description": "高級套房含早餐，獨立衛浴，電視冷氣"
+      },
+      "price": "1600",
+      "priceCurrency": "TWD",
+      "priceSpecification": {
+        "@type": "PriceSpecification", 
+        "minPrice": "1600",
+        "maxPrice": "4600",
+        "priceCurrency": "TWD"
+      }
+    }
+  ]
 }
 </script>
