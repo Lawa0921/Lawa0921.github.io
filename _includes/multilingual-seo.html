@@ -1,0 +1,133 @@
+<!-- Multilingual SEO Tags -->
+
+<!-- Language Declaration -->
+<meta http-equiv="content-language" content="zh-TW">
+<meta name="language" content="zh-TW">
+<meta name="google" content="notranslate">
+
+<!-- Hreflang Tags for Language and Regional Variations -->
+<link rel="alternate" hreflang="zh-TW" href="{{ site.url }}{{ page.url }}" />
+<link rel="alternate" hreflang="zh-Hant" href="{{ site.url }}{{ page.url }}" />
+<link rel="alternate" hreflang="zh-Hans" href="{{ site.url }}{{ page.url }}" />
+<link rel="alternate" hreflang="x-default" href="{{ site.url }}{{ page.url }}" />
+
+<!-- Future Multi-language Support -->
+{% if page.translations %}
+  {% for translation in page.translations %}
+    <link rel="alternate" hreflang="{{ translation.lang }}" href="{{ translation.url }}" />
+  {% endfor %}
+{% endif %}
+
+<!-- Language Meta for Social Media -->
+<meta property="og:locale" content="zh_TW" />
+<meta property="og:locale:alternate" content="zh_CN" />
+<meta property="og:locale:alternate" content="en_US" />
+
+<!-- Structured Data for Language Support -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "{{ site.url }}{{ page.url }}#webpage",
+  "url": "{{ site.url }}{{ page.url }}",
+  "inLanguage": {
+    "@type": "Language",
+    "name": "Traditional Chinese",
+    "alternateName": ["繁體中文", "正體中文", "zh-TW", "zh-Hant"]
+  },
+  "availableLanguage": [
+    {
+      "@type": "Language",
+      "name": "Traditional Chinese",
+      "alternateName": "zh-TW"
+    }
+  ],
+  "potentialAction": {
+    "@type": "ReadAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "{{ site.url }}{{ page.url }}",
+      "inLanguage": "zh-TW",
+      "name": "閱讀繁體中文版本"
+    }
+  }
+}
+</script>
+
+<!-- Language-specific Keywords -->
+<meta name="keywords" lang="zh-TW" content="密式旅行,苗栗露營,泰安露營區,露營木屋,苗栗住宿,泰安溫泉,親子露營,寵物友善露營,豪華露營,Glamping">
+<meta name="keywords" lang="zh-CN" content="密式旅行,苗栗露营,泰安露营区,露营木屋,苗栗住宿,泰安温泉,亲子露营,宠物友好露营,豪华露营,Glamping">
+<meta name="keywords" lang="en" content="Misstravel,Miaoli camping,Tai'an campground,camping cabin,Miaoli accommodation,Tai'an hot spring,family camping,pet-friendly camping,glamping,Taiwan camping">
+
+<!-- Content Language Variations -->
+<meta name="description" lang="zh-TW" content="{{ page.description | default: site.description }}">
+<meta name="description" lang="zh-CN" content="密式旅行位于苗栗县泰安乡，提供露营、木屋、套房等多样化住宿选择。环境优美，设施完善，是亲近大自然的最佳去处。">
+<meta name="description" lang="en" content="Misstravel is located in Tai'an Township, Miaoli County, offering diverse accommodation options including camping sites, cabins, and suites. Beautiful environment with complete facilities, perfect for getting close to nature.">
+
+<!-- Regional Targeting -->
+<meta name="geo.region" content="TW">
+<meta name="geo.country" content="TW">
+<meta name="DC.Language" scheme="RFC1766" content="zh-TW">
+
+<!-- Future Translation Support Template -->
+{% comment %}
+When adding new language versions, use this template:
+
+{% if page.lang == 'en' %}
+<meta property="og:locale" content="en_US" />
+<meta name="language" content="en">
+<link rel="alternate" hreflang="en" href="{{ site.url }}/en{{ page.url }}" />
+{% elsif page.lang == 'ja' %}
+<meta property="og:locale" content="ja_JP" />
+<meta name="language" content="ja">
+<link rel="alternate" hreflang="ja" href="{{ site.url }}/ja{{ page.url }}" />
+{% endif %}
+{% endcomment %}
+
+<!-- Translation Notice for Visitors -->
+<script>
+  // Detect browser language and show translation notice if needed
+  (function() {
+    const browserLang = navigator.language || navigator.userLanguage;
+    const siteLang = 'zh-TW';
+    
+    // If browser language is not Traditional Chinese
+    if (browserLang && !browserLang.startsWith('zh-TW') && !browserLang.startsWith('zh-Hant')) {
+      // Store language preference
+      if (!localStorage.getItem('langNoticeShown')) {
+        console.log('Visitor browser language:', browserLang);
+        // Future: Show translation notice or redirect to appropriate language version
+        localStorage.setItem('langNoticeShown', 'true');
+      }
+    }
+  })();
+</script>
+
+<!-- Style for future language switcher -->
+<style>
+  /* Language switcher styles (hidden by default) */
+  .language-switcher {
+    display: none; /* Will be displayed when multi-language support is added */
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    background: #fff;
+    border-radius: 25px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 10px;
+  }
+  
+  .language-switcher select {
+    border: none;
+    background: transparent;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  /* RTL support preparation */
+  [dir="rtl"] {
+    text-align: right;
+    direction: rtl;
+  }
+</style>

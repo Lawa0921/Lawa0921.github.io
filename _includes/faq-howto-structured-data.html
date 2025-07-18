@@ -1,0 +1,233 @@
+<!-- FAQ Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": "{{ site.url }}{{ page.url }}#faq",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "密式旅行的營業時間是什麼時候？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "我們全年無休，24小時開放。入住時間為下午3點，退房時間為上午11點。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "如何前往密式旅行？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "密式旅行位於苗栗縣泰安鄉中興村2鄰31號。從國道1號下苗栗交流道，接台72線快速道路往汶水，再轉台3線往泰安方向，約40分鐘可達。建議使用Google地圖導航「密式旅行」。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "可以攜帶寵物嗎？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "露營區歡迎攜帶寵物，但需繫繩且飼主需負責清理。木屋區和套房區為維護其他房客權益，嚴禁攜帶寵物。若在營區未繫繩，將酌收每隻100元清潔費。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "訂房方式有哪些？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "您可以透過以下方式訂房：1. LINE ID: misstravel0921 2. 電話：0905-108-958 3. 臉書私訊。建議提早預訂，尤其是假日和連續假期。"
+      }
+    },
+    {
+      "@type": "Question", 
+      "name": "平日和假日的定義是什麼？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "平日：星期日至星期四。假日：星期五、星期六、國定假日。連續假日包含年節期間及國定假日(含連休假期前一晚)。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "有提供餐點嗎？",
+      "acceptedAnswer": {
+        "@type": "Answer", 
+        "text": "營區及露營木屋不提供餐點，但有完善的炊事設備供使用。套房含早餐。園區內設有桌遊咖啡廳，提供咖啡、飲料和輕食。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "有哪些設施可以使用？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "提供24小時熱水淋浴間、洗手台、廁所、冷凍冷藏冰箱、飲水機、吹風機、洗衣機等。露營區有電源插座、洗碗槽、烤肉區。另有兒童遊戲區、觀景台等休閒設施。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "取消訂房的規定是什麼？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "請參考我們的訂房須知頁面了解詳細的取消和延期規定。一般來說，越早通知取消，退費比例越高。如遇天災等不可抗力因素，可全額退費或延期。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "附近有什麼景點？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "附近景點包括：泰安溫泉（車程10分鐘）、水雲三星登山步道、清安豆腐街、大湖草莓園（季節限定）、泰安鐵道文化園區等。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "夜衝有優惠嗎？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "訂假日提早一晚夜衝者，當日價格一律半價（限晚上6點後至10點以前進場）。這是很受歡迎的優惠，建議提早預訂。"
+      }
+    }
+  ]
+}
+</script>
+
+<!-- HowTo Structured Data for Booking Process -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "@id": "{{ site.url }}/info/account#howto",
+  "name": "如何預訂密式旅行住宿",
+  "description": "簡單幾個步驟完成密式旅行的住宿預訂",
+  "image": {
+    "@type": "ImageObject",
+    "url": "{{ site.url }}/assets/images/booking-guide.jpg",
+    "height": "600",
+    "width": "800"
+  },
+  "totalTime": "PT10M",
+  "estimatedCost": {
+    "@type": "MonetaryAmount",
+    "currency": "TWD",
+    "minValue": "600",
+    "maxValue": "3200"
+  },
+  "supply": [
+    {
+      "@type": "HowToSupply",
+      "name": "聯絡方式",
+      "requiredQuantity": 1
+    },
+    {
+      "@type": "HowToSupply", 
+      "name": "入住日期",
+      "requiredQuantity": 1
+    },
+    {
+      "@type": "HowToSupply",
+      "name": "訂金",
+      "requiredQuantity": 1
+    }
+  ],
+  "tool": [
+    {
+      "@type": "HowToTool",
+      "name": "LINE 或電話"
+    },
+    {
+      "@type": "HowToTool",
+      "name": "銀行轉帳功能"
+    }
+  ],
+  "step": [
+    {
+      "@type": "HowToStep",
+      "position": 1,
+      "name": "選擇住宿類型",
+      "text": "瀏覽我們的網站，選擇您想要的住宿類型：露營營位、露營木屋或套房。",
+      "url": "{{ site.url }}/landing.html",
+      "image": "{{ site.url }}/assets/images/step1-choose-room.jpg"
+    },
+    {
+      "@type": "HowToStep",
+      "position": 2,
+      "name": "確認空房狀況", 
+      "text": "透過 LINE (ID: misstravel0921) 或電話 (0905-108-958) 聯繫我們，詢問您想要的日期是否有空房。",
+      "url": "{{ site.url }}/info/contact"
+    },
+    {
+      "@type": "HowToStep",
+      "position": 3,
+      "name": "確認訂房資訊",
+      "text": "告知我們：1. 入住日期和天數 2. 房型選擇 3. 入住人數 4. 是否攜帶寵物（僅限露營區）5. 特殊需求",
+      "image": "{{ site.url }}/assets/images/step3-confirm.jpg"
+    },
+    {
+      "@type": "HowToStep",
+      "position": 4, 
+      "name": "支付訂金",
+      "text": "確認訂房後，請在指定時間內匯款訂金。我們會提供匯款帳號資訊。",
+      "image": "{{ site.url }}/assets/images/step4-payment.jpg"
+    },
+    {
+      "@type": "HowToStep",
+      "position": 5,
+      "name": "收到確認通知",
+      "text": "匯款後請通知我們，確認收到訂金後，我們會發送訂房確認訊息給您。",
+      "image": "{{ site.url }}/assets/images/step5-confirmation.jpg"
+    },
+    {
+      "@type": "HowToStep",
+      "position": 6,
+      "name": "入住當天",
+      "text": "入住當天下午3點後可辦理入住，請出示訂房確認訊息，支付尾款後即可入住。",
+      "url": "{{ site.url }}/info/map",
+      "image": "{{ site.url }}/assets/images/step6-checkin.jpg"
+    }
+  ],
+  "yield": "完成密式旅行住宿預訂"
+}
+</script>
+
+<!-- Recipe-style HowTo for Camping Setup -->
+{% if page.url contains "camping" %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "如何在密式旅行搭設營帳",
+  "description": "在密式旅行露營區搭設營帳的最佳方式",
+  "totalTime": "PT30M",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "position": 1,
+      "name": "選擇營位",
+      "text": "抵達後，工作人員會帶您到預訂的營位。木棧板營位適合一般帳篷，草地營位空間較大。"
+    },
+    {
+      "@type": "HowToStep",
+      "position": 2,
+      "name": "檢查設施",
+      "text": "確認營位的電源插座位置，規劃帳篷方向。每個營位都有專屬電源。"
+    },
+    {
+      "@type": "HowToStep", 
+      "position": 3,
+      "name": "搭設帳篷",
+      "text": "在木棧板或指定草地區域搭設帳篷。注意不要超出營位範圍。"
+    },
+    {
+      "@type": "HowToStep",
+      "position": 4,
+      "name": "連接電源",
+      "text": "使用延長線連接營位電源，確保電器使用安全。"
+    },
+    {
+      "@type": "HowToStep",
+      "position": 5,
+      "name": "設置炊事區",
+      "text": "烤肉或烹煮請使用架高器具，離地60公分以上。可使用公共洗碗槽。"
+    }
+  ]
+}
+</script>
+{% endif %}

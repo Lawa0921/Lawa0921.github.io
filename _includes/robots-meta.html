@@ -1,0 +1,33 @@
+<!-- Dynamic robots meta tags based on page type -->
+{% comment %}
+  Smart robots meta configuration for different page types
+{% endcomment %}
+
+{% if page.noindex %}
+  <meta name="robots" content="noindex, nofollow">
+{% elsif page.collection == "rooms" %}
+  <!-- Room pages should be indexed with images -->
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+{% elsif page.url == "/" %}
+  <!-- Homepage gets maximum indexing priority -->
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="googlebot" content="index, follow">
+  <meta name="bingbot" content="index, follow">
+{% elsif page.url contains "/galleries" or page.url contains "/assets/images" %}
+  <!-- Gallery pages should prioritize image indexing -->
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="googlebot-image" content="index">
+{% elsif page.collection == "announcements" %}
+  <!-- Announcements should be indexed but with snippet control -->
+  <meta name="robots" content="index, follow, max-snippet:200">
+{% else %}
+  <!-- Default indexing for other pages -->
+  <meta name="robots" content="index, follow">
+{% endif %}
+
+<!-- Additional search engine specific directives -->
+<meta name="robots" content="noodp, noydir">
+<meta name="googlebot" content="notranslate">
+<meta name="slurp" content="noodp, noydir">
+<meta name="msnbot" content="noodp, noydir">

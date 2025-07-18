@@ -1,0 +1,118 @@
+<!-- Enhanced RSS and Atom Feeds -->
+
+<!-- Main RSS Feed -->
+<link rel="alternate" type="application/rss+xml" title="{{ site.title }} - RSS Feed" href="{{ site.url }}/feed.xml">
+
+<!-- Atom Feed -->
+<link rel="alternate" type="application/atom+xml" title="{{ site.title }} - Atom Feed" href="{{ site.url }}/atom.xml">
+
+<!-- JSON Feed -->
+<link rel="alternate" type="application/json" title="{{ site.title }} - JSON Feed" href="{{ site.url }}/feed.json">
+
+<!-- Category-specific Feeds -->
+<link rel="alternate" type="application/rss+xml" title="{{ site.title }} - 最新公告" href="{{ site.url }}/feed/announcements.xml">
+<link rel="alternate" type="application/rss+xml" title="{{ site.title }} - 優惠活動" href="{{ site.url }}/feed/promotions.xml">
+<link rel="alternate" type="application/rss+xml" title="{{ site.title }} - 住宿資訊更新" href="{{ site.url }}/feed/rooms.xml">
+
+<!-- WebSub (PubSubHubbub) for Real-time Updates -->
+<link rel="hub" href="https://pubsubhubbub.appspot.com/">
+<link rel="self" href="{{ site.url }}/feed.xml">
+
+<!-- Feed Autodiscovery for Different Formats -->
+<link rel="alternate" type="application/rss+xml" title="{{ site.title }} - 所有更新 (RSS 2.0)" href="{{ site.url }}/feeds/all.rss">
+<link rel="alternate" type="application/atom+xml" title="{{ site.title }} - 所有更新 (Atom)" href="{{ site.url }}/feeds/all.atom">
+<link rel="alternate" type="application/feed+json" title="{{ site.title }} - 所有更新 (JSON)" href="{{ site.url }}/feeds/all.json">
+
+<!-- Language-specific Feeds (for future use) -->
+<link rel="alternate" hreflang="zh-TW" type="application/rss+xml" title="{{ site.title }} - 繁體中文" href="{{ site.url }}/feed.xml">
+<link rel="alternate" hreflang="zh-CN" type="application/rss+xml" title="{{ site.title }} - 简体中文" href="{{ site.url }}/feed-zh-cn.xml">
+<link rel="alternate" hreflang="en" type="application/rss+xml" title="{{ site.title }} - English" href="{{ site.url }}/feed-en.xml">
+
+<!-- Podcast Feed (if applicable) -->
+{% if site.podcast %}
+<link rel="alternate" type="application/rss+xml" title="{{ site.title }} - Podcast" href="{{ site.url }}/podcast.xml">
+<link rel="alternate" type="application/rss+xml" title="{{ site.title }} - Video Podcast" href="{{ site.url }}/vodcast.xml">
+{% endif %}
+
+<!-- OpenSearch Description -->
+<link rel="search" type="application/opensearchdescription+xml" title="{{ site.title }} 搜尋" href="{{ site.url }}/opensearch.xml">
+
+<!-- Feed Metadata in JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "DataFeed",
+  "@id": "{{ site.url }}/feed.xml",
+  "name": "{{ site.title }} RSS Feed",
+  "description": "{{ site.description }}",
+  "url": "{{ site.url }}/feed.xml",
+  "dateModified": "{{ site.time | date_to_xmlschema }}",
+  "provider": {
+    "@id": "{{ site.url }}/#organization"
+  },
+  "dataFeedElement": [
+    {% for post in site.posts limit:10 %}
+    {
+      "@type": "DataFeedItem",
+      "item": {
+        "@type": "BlogPosting",
+        "headline": "{{ post.title | strip_html | escape }}",
+        "url": "{{ site.url }}{{ post.url }}",
+        "datePublished": "{{ post.date | date_to_xmlschema }}",
+        "description": "{{ post.excerpt | strip_html | truncate: 160 | escape }}"
+      }
+    }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ]
+}
+</script>
+
+<!-- RSS Extensions -->
+<link rel="alternate" type="application/rss+xml" title="{{ site.title }} - GeoRSS Feed" href="{{ site.url }}/georss.xml">
+<link rel="alternate" type="application/rss+xml" title="{{ site.title }} - Media RSS Feed" href="{{ site.url }}/mrss.xml">
+
+<!-- OPML for Feed Readers -->
+<link rel="outline" type="text/x-opml" title="{{ site.title }} - OPML" href="{{ site.url }}/feeds.opml">
+
+<!-- Feed Icons and Discovery Hints -->
+<link rel="icon" type="image/png" href="{{ site.url }}/assets/images/feed-icon-28x28.png" sizes="28x28">
+<link rel="icon" type="image/png" href="{{ site.url }}/assets/images/feed-icon-14x14.png" sizes="14x14">
+
+<!-- Microformats for Feed Discovery -->
+<link rel="alternate" class="h-feed" type="text/html" title="{{ site.title }} - 網頁版" href="{{ site.url }}">
+
+<!-- ActivityPub Support (for future federation) -->
+<link rel="alternate" type="application/activity+json" href="{{ site.url }}/actor.json">
+
+<!-- WebMention for Social Interactions -->
+<link rel="webmention" href="{{ site.url }}/webmention">
+<link rel="pingback" href="{{ site.url }}/pingback">
+
+<!-- Feed Update Frequency Hints -->
+<meta name="syndication-source" content="{{ site.url }}/feed.xml">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+
+<!-- Structured Data for Feed Publisher -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "{{ site.url }}/#feeds",
+  "potentialAction": {
+    "@type": "SubscribeAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "{{ site.url }}/feed.xml",
+      "actionPlatform": [
+        "http://schema.org/DesktopWebPlatform",
+        "http://schema.org/MobileWebPlatform"
+      ]
+    },
+    "object": {
+      "@type": "DataFeed",
+      "name": "{{ site.title }} Updates",
+      "description": "訂閱最新消息、優惠活動和住宿資訊"
+    }
+  }
+}
+</script>

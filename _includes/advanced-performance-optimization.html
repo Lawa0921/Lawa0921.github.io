@@ -1,0 +1,398 @@
+<!-- Advanced Performance Optimization for Core Web Vitals -->
+
+<!-- Resource Hints -->
+<link rel="dns-prefetch" href="https://fonts.googleapis.com">
+<link rel="dns-prefetch" href="https://fonts.gstatic.com">
+<link rel="dns-prefetch" href="https://www.google-analytics.com">
+<link rel="dns-prefetch" href="https://www.googletagmanager.com">
+
+<!-- Preconnect to critical third-party origins -->
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<!-- Prefetch key pages -->
+{% if page.url == "/" %}
+<link rel="prefetch" href="/landing.html">
+<link rel="prefetch" href="/info/contact">
+<link rel="prefetch" href="/info/map">
+{% endif %}
+
+<!-- Advanced Performance Scripts -->
+<script>
+  // 效能優化配置
+  window.performanceConfig = {
+    enableLazyLoad: true,
+    enablePrefetch: true,
+    enableServiceWorker: false,
+    criticalImages: 3
+  };
+  
+  // 延遲非關鍵資源載入
+  (function() {
+    'use strict';
+    
+    // 延遲載入 Google Fonts
+    function loadFonts() {
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,600,600italic&display=swap';
+      document.head.appendChild(link);
+    }
+    
+    // 使用 requestIdleCallback 延遲載入
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(loadFonts);
+    } else {
+      setTimeout(loadFonts, 1);
+    }
+    
+    // 預取下一個可能訪問的頁面
+    function prefetchNextPage() {
+      const links = document.querySelectorAll('a[href^="/"]');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const link = entry.target;
+            const href = link.getAttribute('href');
+            
+            // 創建預取連結
+            const prefetchLink = document.createElement('link');
+            prefetchLink.rel = 'prefetch';
+            prefetchLink.href = href;
+            document.head.appendChild(prefetchLink);
+            
+            // 停止觀察已預取的連結
+            observer.unobserve(link);
+          }
+        });
+      }, {
+        rootMargin: '50px'
+      });
+      
+      links.forEach(link => observer.observe(link));
+    }
+    
+    // 頁面載入後啟動預取
+    if (window.performanceConfig.enablePrefetch) {
+      window.addEventListener('load', () => {
+        setTimeout(prefetchNextPage, 2000);
+      });
+    }
+    
+    // 優化第三方腳本載入
+    function loadThirdPartyScripts() {
+      // Google Analytics (如果有的話)
+      if (window.ga_tracking_id) {
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = `https://www.googletagmanager.com/gtag/js?id=${window.ga_tracking_id}`;
+        document.head.appendChild(script);
+      }
+    }
+    
+    // 延遲載入第三方腳本
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(() => {
+        setTimeout(loadThirdPartyScripts, 2000);
+      });
+    } else {
+      setTimeout(loadThirdPartyScripts, 3000);
+    }
+    
+    // 實施 facade pattern 用於嵌入內容
+    function setupFacades() {
+      // YouTube 影片 facade
+      const videos = document.querySelectorAll('[data-youtube-id]');
+      videos.forEach(video => {
+        const videoId = video.dataset.youtubeId;
+        const facade = createYouTubeFacade(videoId);
+        video.appendChild(facade);
+      });
+      
+      // Google Maps facade
+      const maps = document.querySelectorAll('[data-google-map]');
+      maps.forEach(map => {
+        const mapFacade = createMapFacade();
+        map.appendChild(mapFacade);
+      });
+    }
+    
+    function createYouTubeFacade(videoId) {
+      const facade = document.createElement('div');
+      facade.className = 'youtube-facade';
+      facade.innerHTML = `
+        <img src="https://img.youtube.com/vi/${videoId}/maxresdefault.jpg" 
+             alt="YouTube 影片預覽" loading="lazy">
+        <button class="play-button" aria-label="播放影片">▶</button>
+      `;
+      
+      facade.addEventListener('click', () => {
+        const iframe = document.createElement('iframe');
+        iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+        iframe.allow = 'accelerometer; autoplay; encrypted-media; gyroscope';
+        iframe.allowFullscreen = true;
+        facade.parentNode.replaceChild(iframe, facade);
+      });
+      
+      return facade;
+    }
+    
+    function createMapFacade() {
+      const facade = document.createElement('div');
+      facade.className = 'map-facade';
+      facade.innerHTML = `
+        <img src="/assets/images/map-preview.jpg" alt="地圖預覽" loading="lazy">
+        <button class="load-map-button">載入地圖</button>
+      `;
+      
+      facade.addEventListener('click', () => {
+        // 載入真實地圖
+        loadGoogleMaps();
+      });
+      
+      return facade;
+    }
+    
+    // 優化滾動效能
+    let ticking = false;
+    function optimizeScroll() {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          // 執行滾動相關操作
+          updateScrollProgress();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+    
+    function updateScrollProgress() {
+      const scrollTop = window.pageYOffset;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = (scrollTop / docHeight) * 100;
+      
+      // 更新滾動進度條（如果有的話）
+      const progressBar = document.querySelector('.scroll-progress');
+      if (progressBar) {
+        progressBar.style.width = scrollPercent + '%';
+      }
+    }
+    
+    // 使用 passive event listeners
+    window.addEventListener('scroll', optimizeScroll, { passive: true });
+    window.addEventListener('touchstart', () => {}, { passive: true });
+    
+    // 實施 PRPL 模式
+    // Push - 推送關鍵資源
+    // Render - 初始路由渲染
+    // Pre-cache - 預快取剩餘路由
+    // Lazy-load - 延遲載入剩餘路由
+    
+    // 預快取關鍵資源
+    function precacheResources() {
+      const criticalResources = [
+        '/assets/css/main.css',
+        '/assets/js/main.min.js',
+        '/assets/images/banner.jpg'
+      ];
+      
+      if ('caches' in window) {
+        caches.open('v1-critical').then(cache => {
+          cache.addAll(criticalResources);
+        });
+      }
+    }
+    
+    // 實施資源優先級提示
+    function setResourcePriorities() {
+      // 關鍵圖片
+      const criticalImages = document.querySelectorAll('img:nth-child(-n+3)');
+      criticalImages.forEach(img => {
+        img.fetchpriority = 'high';
+        img.loading = 'eager';
+      });
+      
+      // 非關鍵圖片
+      const lazyImages = document.querySelectorAll('img:nth-child(n+4)');
+      lazyImages.forEach(img => {
+        img.loading = 'lazy';
+        img.fetchpriority = 'low';
+      });
+    }
+    
+    // 優化 Web Font 載入
+    if ('fonts' in document) {
+      document.fonts.ready.then(() => {
+        document.body.classList.add('fonts-loaded');
+      });
+    }
+    
+    // 監測並報告 Core Web Vitals
+    function reportWebVitals() {
+      // Largest Contentful Paint (LCP)
+      new PerformanceObserver((entryList) => {
+        const entries = entryList.getEntries();
+        const lastEntry = entries[entries.length - 1];
+        console.log('LCP:', lastEntry.renderTime || lastEntry.loadTime);
+      }).observe({ entryTypes: ['largest-contentful-paint'] });
+      
+      // First Input Delay (FID)
+      new PerformanceObserver((entryList) => {
+        const firstInput = entryList.getEntries()[0];
+        const fid = firstInput.processingStart - firstInput.startTime;
+        console.log('FID:', fid);
+      }).observe({ entryTypes: ['first-input'] });
+      
+      // Cumulative Layout Shift (CLS)
+      let clsScore = 0;
+      new PerformanceObserver((entryList) => {
+        for (const entry of entryList.getEntries()) {
+          if (!entry.hadRecentInput) {
+            clsScore += entry.value;
+          }
+        }
+        console.log('CLS:', clsScore);
+      }).observe({ entryTypes: ['layout-shift'] });
+    }
+    
+    // 初始化所有優化
+    function initOptimizations() {
+      setResourcePriorities();
+      setupFacades();
+      
+      if ('PerformanceObserver' in window) {
+        reportWebVitals();
+      }
+      
+      // 延遲執行非關鍵優化
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(() => {
+          precacheResources();
+        });
+      }
+    }
+    
+    // DOM 載入完成後初始化
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initOptimizations);
+    } else {
+      initOptimizations();
+    }
+  })();
+</script>
+
+<!-- 優化樣式 -->
+<style>
+  /* 優化字體載入 */
+  .fonts-loaded body {
+    font-family: 'Source Sans Pro', sans-serif;
+  }
+  
+  /* YouTube Facade 樣式 */
+  .youtube-facade {
+    position: relative;
+    cursor: pointer;
+    max-width: 100%;
+  }
+  
+  .youtube-facade img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .youtube-facade .play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 68px;
+    height: 48px;
+    background-color: #f00;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    transition: opacity 0.3s;
+  }
+  
+  .youtube-facade:hover .play-button {
+    opacity: 0.8;
+  }
+  
+  /* 地圖 Facade 樣式 */
+  .map-facade {
+    position: relative;
+    cursor: pointer;
+  }
+  
+  .map-facade img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+  }
+  
+  .map-facade .load-map-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px 20px;
+    background: #2196F3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  /* 滾動進度條 */
+  .scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: #2196F3;
+    transition: width 0.1s;
+    z-index: 9999;
+  }
+  
+  /* 避免 CLS 的圖片容器 */
+  .img-container {
+    position: relative;
+    overflow: hidden;
+    background: #f0f0f0;
+  }
+  
+  .img-container::before {
+    content: '';
+    display: block;
+    padding-top: 66.67%; /* 3:2 比例 */
+  }
+  
+  .img-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  /* 減少重繪和重排 */
+  .will-change-transform {
+    will-change: transform;
+  }
+  
+  .will-change-opacity {
+    will-change: opacity;
+  }
+  
+  /* GPU 加速 */
+  .gpu-accelerated {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+</style>
+
+<!-- 滾動進度條 -->
+<div class="scroll-progress"></div>

@@ -1,0 +1,19 @@
+<!-- Google Search Console 驗證 -->
+{% if site.google_search_console %}
+<meta name="google-site-verification" content="{{ site.google_search_console }}" />
+{% endif %}
+
+<!-- Bing Webmaster Tools 驗證 -->
+{% if site.bing_site_verification %}
+<meta name="msvalidate.01" content="{{ site.bing_site_verification }}" />
+{% endif %}
+
+<!-- Yahoo Site Explorer 驗證 -->
+{% if site.yahoo_site_verification %}
+<meta name="y_key" content="{{ site.yahoo_site_verification }}" />
+{% endif %}
+
+<!-- Baidu 站長工具驗證 (針對中文內容) -->
+{% if site.baidu_site_verification %}
+<meta name="baidu-site-verification" content="{{ site.baidu_site_verification }}" />
+{% endif %}

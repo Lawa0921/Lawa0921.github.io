@@ -1,0 +1,245 @@
+<!-- Video Object Structured Data -->
+
+{% if page.videos %}
+<!-- Page Videos -->
+{% for video in page.videos %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  "@id": "{{ site.url }}{{ page.url }}#video{{ forloop.index }}",
+  "name": "{{ video.title | default: page.title }} - 影片 {{ forloop.index }}",
+  "description": "{{ video.description | default: page.description | strip_html | truncate: 160 }}",
+  "thumbnailUrl": "{{ site.url }}{{ video.thumbnail | default: '/assets/images/video-thumbnail.jpg' }}",
+  "uploadDate": "{{ video.date | default: page.date | date_to_xmlschema }}",
+  "duration": "{{ video.duration | default: 'PT2M30S' }}",
+  "contentUrl": "{{ video.url }}",
+  "embedUrl": "{{ video.embed_url }}",
+  "interactionStatistic": {
+    "@type": "InteractionCounter",
+    "interactionType": { "@type": "WatchAction" },
+    "userInteractionCount": {{ video.views | default: 1000 }}
+  },
+  "publisher": {
+    "@id": "{{ site.url }}/#organization"
+  },
+  "inLanguage": "zh-TW",
+  "associatedArticle": {
+    "@type": "WebPage",
+    "@id": "{{ site.url }}{{ page.url }}"
+  }
+}
+</script>
+{% endfor %}
+{% endif %}
+
+<!-- Default Promotional Videos -->
+{% if page.url == "/" %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  "@id": "{{ site.url }}/#promo-video",
+  "name": "密式旅行 - 苗栗最美露營區介紹",
+  "description": "探索密式旅行露營區的美麗環境、完善設施和多樣化住宿選擇。位於苗栗泰安鄉，提供露營、木屋、套房等住宿體驗。",
+  "thumbnailUrl": [
+    "{{ site.url }}/assets/images/video-thumb-1x1.jpg",
+    "{{ site.url }}/assets/images/video-thumb-4x3.jpg",
+    "{{ site.url }}/assets/images/video-thumb-16x9.jpg"
+  ],
+  "uploadDate": "2024-01-01T08:00:00+08:00",
+  "duration": "PT3M45S",
+  "contentUrl": "{{ site.url }}/videos/misstravel-intro.mp4",
+  "embedUrl": "{{ site.url }}/embed/misstravel-intro",
+  "potentialAction": {
+    "@type": "WatchAction",
+    "target": "{{ site.url }}/videos/misstravel-intro.mp4"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "@id": "{{ site.url }}/#organization",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ site.url }}{{ site.logo }}",
+      "width": 512,
+      "height": 512
+    }
+  },
+  "inLanguage": "zh-TW",
+  "isFamilyFriendly": true,
+  "genre": ["旅遊", "露營", "住宿"],
+  "keywords": "密式旅行,苗栗露營,泰安露營區,露營推薦,親子露營",
+  "interactionStatistic": [
+    {
+      "@type": "InteractionCounter",
+      "interactionType": { "@type": "WatchAction" },
+      "userInteractionCount": 5420
+    },
+    {
+      "@type": "InteractionCounter",
+      "interactionType": { "@type": "LikeAction" },
+      "userInteractionCount": 234
+    }
+  ],
+  "video": {
+    "@type": "VideoObject",
+    "name": "密式旅行 - 360度環景導覽",
+    "description": "360度全景展示密式旅行營區環境",
+    "thumbnailUrl": "{{ site.url }}/assets/images/360-thumb.jpg",
+    "uploadDate": "2024-01-15T10:00:00+08:00",
+    "duration": "PT1M30S",
+    "contentUrl": "{{ site.url }}/videos/360-tour.mp4"
+  }
+}
+</script>
+
+<!-- Virtual Tour Video -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  "@id": "{{ site.url }}/#virtual-tour",
+  "name": "密式旅行虛擬導覽",
+  "description": "跟著鏡頭一起體驗密式旅行的各個區域，包括露營區、木屋區、套房區和公共設施。",
+  "thumbnailUrl": "{{ site.url }}/assets/images/tour-thumbnail.jpg",
+  "uploadDate": "2024-01-10T14:00:00+08:00",
+  "duration": "PT5M20S",
+  "contentUrl": "{{ site.url }}/videos/virtual-tour.mp4",
+  "embedUrl": "https://www.youtube.com/embed/EXAMPLE",
+  "publisher": {
+    "@id": "{{ site.url }}/#organization"
+  },
+  "recordedAt": {
+    "@type": "Place",
+    "name": "密式旅行露營區",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "{{ site.street-address }}",
+      "addressLocality": "泰安鄉",
+      "addressRegion": "苗栗縣",
+      "postalCode": "365",
+      "addressCountry": "TW"
+    }
+  },
+  "productionCompany": {
+    "@type": "Organization",
+    "name": "密式旅行"
+  },
+  "isAccessibleForFree": true,
+  "isFamilyFriendly": true
+}
+</script>
+{% endif %}
+
+<!-- Room-specific Videos -->
+{% if page.collection == "rooms" and page.video_tour %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  "@id": "{{ site.url }}{{ page.url }}#room-video",
+  "name": "{{ page.title }} - 房型導覽影片",
+  "description": "詳細介紹{{ page.title }}的內部空間、設施和周邊環境",
+  "thumbnailUrl": "{{ site.url }}/assets/images/rooms/{{ page.slug }}/video-thumb.jpg",
+  "uploadDate": "{{ page.video_date | default: page.date | date_to_xmlschema }}",
+  "duration": "PT2M",
+  "contentUrl": "{{ page.video_tour }}",
+  "embedUrl": "{{ page.video_embed }}",
+  "publisher": {
+    "@id": "{{ site.url }}/#organization"
+  },
+  "about": {
+    "@type": "Product",
+    "name": "{{ page.title }}",
+    "url": "{{ site.url }}{{ page.url }}"
+  },
+  "hasPart": [
+    {
+      "@type": "Clip",
+      "name": "房間內部",
+      "startOffset": 0,
+      "endOffset": 45,
+      "url": "{{ page.video_tour }}#t=0,45"
+    },
+    {
+      "@type": "Clip", 
+      "name": "衛浴設施",
+      "startOffset": 45,
+      "endOffset": 75,
+      "url": "{{ page.video_tour }}#t=45,75"
+    },
+    {
+      "@type": "Clip",
+      "name": "戶外景觀",
+      "startOffset": 75,
+      "endOffset": 120,
+      "url": "{{ page.video_tour }}#t=75,120"
+    }
+  ]
+}
+</script>
+{% endif %}
+
+<!-- YouTube/Facebook Video Embedding Support -->
+{% if page.youtube_id or page.facebook_video %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  "@id": "{{ site.url }}{{ page.url }}#social-video",
+  "name": "{{ page.video_title | default: page.title }}",
+  "description": "{{ page.video_description | default: page.description }}",
+  "thumbnailUrl": "{% if page.youtube_id %}https://img.youtube.com/vi/{{ page.youtube_id }}/maxresdefault.jpg{% else %}{{ site.url }}/assets/images/fb-video-thumb.jpg{% endif %}",
+  "uploadDate": "{{ page.video_date | default: page.date | date_to_xmlschema }}",
+  "embedUrl": "{% if page.youtube_id %}https://www.youtube.com/embed/{{ page.youtube_id }}{% else %}{{ page.facebook_video }}{% endif %}",
+  "publisher": {
+    "@id": "{{ site.url }}/#organization"
+  },
+  "potentialAction": {
+    "@type": "WatchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "{% if page.youtube_id %}https://www.youtube.com/watch?v={{ page.youtube_id }}{% else %}{{ page.facebook_video }}{% endif %}",
+      "actionPlatform": [
+        "http://schema.org/DesktopWebPlatform",
+        "http://schema.org/MobileWebPlatform",
+        "http://schema.org/IOSPlatform",
+        "http://schema.org/AndroidPlatform"
+      ]
+    }
+  }
+}
+</script>
+{% endif %}
+
+<!-- Live Stream Events -->
+{% if page.live_stream %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BroadcastEvent",
+  "@id": "{{ site.url }}{{ page.url }}#livestream",
+  "name": "{{ page.stream_title }}",
+  "description": "{{ page.stream_description }}",
+  "startDate": "{{ page.stream_start | date_to_xmlschema }}",
+  "endDate": "{{ page.stream_end | date_to_xmlschema }}",
+  "isLiveBroadcast": true,
+  "broadcastOfEvent": {
+    "@type": "Event",
+    "name": "{{ page.event_name }}",
+    "location": {
+      "@id": "{{ site.url }}/#organization"
+    }
+  },
+  "workPerformed": {
+    "@type": "VideoObject",
+    "name": "{{ page.stream_title }} - 直播",
+    "embedUrl": "{{ page.stream_embed_url }}",
+    "potentialAction": {
+      "@type": "WatchAction",
+      "target": "{{ page.stream_url }}"
+    }
+  }
+}
+</script>
+{% endif %}

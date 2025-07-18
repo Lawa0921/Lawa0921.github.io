@@ -1,0 +1,441 @@
+<!-- Enhanced Image Optimization for SEO and Performance -->
+<script>
+  // 增強的圖片 SEO 優化
+  (function() {
+    'use strict';
+    
+    // 配置選項
+    const config = {
+      siteName: '密式旅行',
+      defaultAltSuffix: ' - 密式旅行苗栗泰安露營住宿',
+      lazyLoadOffset: 50,
+      webpSupport: false
+    };
+    
+    // 檢測 WebP 支援
+    function checkWebPSupport() {
+      const canvas = document.createElement('canvas');
+      canvas.width = canvas.height = 1;
+      return canvas.toDataURL('image/webp').indexOf('image/webp') === 0;
+    }
+    
+    config.webpSupport = checkWebPSupport();
+    
+    // 增強的 alt 文字生成器
+    function generateEnhancedAltText(img) {
+      const src = img.src;
+      const fileName = src.split('/').pop().split('.')[0];
+      const parent = img.closest('[class*="room"], [class*="carousel"], article, section');
+      const pageTitle = document.querySelector('h1')?.textContent || '';
+      
+      // 根據上下文和檔案路徑生成更精確的 alt 文字
+      const contextMap = {
+        'camping': '露營區營位',
+        'cabin': '露營木屋',
+        'suite': '套房住宿',
+        'gallery': '園區環境',
+        'menu': '餐廳菜單',
+        'map': '交通地圖',
+        'view': '景觀視野',
+        'bathroom': '衛浴設施',
+        'interior': '室內空間',
+        'exterior': '戶外環境'
+      };
+      
+      let altText = '';
+      
+      // 尋找匹配的上下文
+      for (const [key, value] of Object.entries(contextMap)) {
+        if (src.toLowerCase().includes(key) || fileName.toLowerCase().includes(key)) {
+          altText = value;
+          break;
+        }
+      }
+      
+      // 如果有頁面標題，加入更多上下文
+      if (pageTitle && !altText.includes(pageTitle)) {
+        altText = pageTitle + ' - ' + altText;
+      }
+      
+      // 加入編號資訊
+      const numberMatch = fileName.match(/\d+/);
+      if (numberMatch) {
+        altText += ` ${numberMatch[0]}號`;
+      }
+      
+      // 加入網站名稱
+      altText += config.defaultAltSuffix;
+      
+      return altText;
+    }
+    
+    // 優化所有圖片
+    function optimizeImages() {
+      const images = document.querySelectorAll('img');
+      
+      images.forEach((img, index) => {
+        // 優化 alt 屬性
+        if (!img.alt || img.alt.trim() === '' || img.alt === 'image') {
+          img.alt = generateEnhancedAltText(img);
+        }
+        
+        // 添加 title 屬性
+        if (!img.title && img.alt) {
+          img.title = img.alt;
+        }
+        
+        // 添加 loading 屬性
+        if (!img.hasAttribute('loading') && !isInViewport(img)) {
+          img.loading = 'lazy';
+        }
+        
+        // 添加 decoding 屬性
+        if (!img.hasAttribute('decoding')) {
+          img.decoding = 'async';
+        }
+        
+        // 添加寬高屬性以避免 CLS
+        if (!img.width && img.naturalWidth) {
+          img.width = img.naturalWidth;
+        }
+        if (!img.height && img.naturalHeight) {
+          img.height = img.naturalHeight;
+        }
+        
+        // 為重要圖片添加 fetchpriority
+        if (index < 3 && isInViewport(img)) {
+          img.fetchpriority = 'high';
+        }
+        
+        // 錯誤處理
+        img.addEventListener('error', handleImageError);
+        
+        // 載入完成處理
+        img.addEventListener('load', handleImageLoad);
+      });
+    }
+    
+    // 檢查元素是否在視窗內
+    function isInViewport(element) {
+      const rect = element.getBoundingClientRect();
+      return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+      );
+    }
+    
+    // 處理圖片載入錯誤
+    function handleImageError(e) {
+      const img = e.target;
+      console.warn('圖片載入失敗:', img.src);
+      
+      // 嘗試載入備用圖片
+      if (!img.dataset.errorHandled) {
+        img.dataset.errorHandled = 'true';
+        
+        // 根據圖片類型提供預設圖片
+        if (img.src.includes('room') || img.src.includes('cabin')) {
+          img.src = '/assets/images/default-room.jpg';
+        } else {
+          img.src = '/assets/images/default.jpg';
+        }
+        
+        img.alt = '圖片暫時無法顯示 - ' + img.alt;
+      }
+    }
+    
+    // 處理圖片載入完成
+    function handleImageLoad(e) {
+      const img = e.target;
+      img.classList.add('loaded');
+      
+      // 移除載入動畫
+      if (img.classList.contains('lazy-loading')) {
+        img.classList.remove('lazy-loading');
+      }
+    }
+    
+    // 建立進階的 Intersection Observer
+    function setupLazyLoading() {
+      if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const img = entry.target;
+              
+              // 預載下一張圖片
+              preloadNextImage(img);
+              
+              // 觀察完成，停止觀察
+              observer.unobserve(img);
+            }
+          });
+        }, {
+          rootMargin: `${config.lazyLoadOffset}px`
+        });
+        
+        // 觀察所有懶載入圖片
+        document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+          imageObserver.observe(img);
+          img.classList.add('lazy-loading');
+        });
+      }
+    }
+    
+    // 預載下一張圖片
+    function preloadNextImage(currentImg) {
+      const allImages = Array.from(document.querySelectorAll('img'));
+      const currentIndex = allImages.indexOf(currentImg);
+      
+      if (currentIndex < allImages.length - 1) {
+        const nextImg = allImages[currentIndex + 1];
+        if (nextImg.loading === 'lazy') {
+          const preloadLink = document.createElement('link');
+          preloadLink.rel = 'preload';
+          preloadLink.as = 'image';
+          preloadLink.href = nextImg.src;
+          document.head.appendChild(preloadLink);
+        }
+      }
+    }
+    
+    // 添加圖片結構化資料
+    function addImageStructuredData() {
+      const images = document.querySelectorAll('img[src*="room"], img[src*="cabin"], img[src*="suite"], .carousel img');
+      
+      if (images.length > 0) {
+        const imageObjects = Array.from(images).slice(0, 10).map(img => ({
+          "@type": "ImageObject",
+          "url": new URL(img.src, window.location.origin).href,
+          "contentUrl": new URL(img.src, window.location.origin).href,
+          "caption": img.alt,
+          "name": img.title || img.alt,
+          "width": {
+            "@type": "QuantitativeValue",
+            "value": img.naturalWidth || img.width || 800,
+            "unitCode": "PX"
+          },
+          "height": {
+            "@type": "QuantitativeValue", 
+            "value": img.naturalHeight || img.height || 600,
+            "unitCode": "PX"
+          },
+          "encodingFormat": getImageMimeType(img.src),
+          "uploadDate": document.lastModified
+        }));
+        
+        const script = document.createElement('script');
+        script.type = 'application/ld+json';
+        script.textContent = JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "ImageGallery",
+          "name": document.title + " - 圖片集",
+          "description": "密式旅行住宿環境與設施實景照片",
+          "url": window.location.href,
+          "image": imageObjects,
+          "numberOfItems": imageObjects.length
+        });
+        
+        document.head.appendChild(script);
+      }
+    }
+    
+    // 獲取圖片 MIME 類型
+    function getImageMimeType(src) {
+      const ext = src.split('.').pop().toLowerCase();
+      const mimeTypes = {
+        'jpg': 'image/jpeg',
+        'jpeg': 'image/jpeg',
+        'png': 'image/png',
+        'webp': 'image/webp',
+        'gif': 'image/gif',
+        'svg': 'image/svg+xml'
+      };
+      return mimeTypes[ext] || 'image/jpeg';
+    }
+    
+    // 優化輪播圖片
+    function optimizeCarousel() {
+      const carousels = document.querySelectorAll('.carousel');
+      
+      carousels.forEach(carousel => {
+        const images = carousel.querySelectorAll('img');
+        
+        // 預載第一張和第二張圖片
+        if (images[0]) images[0].loading = 'eager';
+        if (images[1]) {
+          const preload = document.createElement('link');
+          preload.rel = 'preload';
+          preload.as = 'image';
+          preload.href = images[1].src;
+          document.head.appendChild(preload);
+        }
+        
+        // 為輪播圖片添加特殊屬性
+        images.forEach((img, idx) => {
+          img.setAttribute('data-slide-index', idx);
+          img.setAttribute('itemprop', 'image');
+        });
+      });
+    }
+    
+    // 響應式圖片處理
+    function setupResponsiveImages() {
+      const images = document.querySelectorAll('img:not([srcset])');
+      
+      images.forEach(img => {
+        if (img.src && !img.src.includes('icon') && !img.src.includes('logo')) {
+          // 建立 srcset 以支援不同解析度
+          const baseSrc = img.src.replace(/\.(jpg|jpeg|png)$/i, '');
+          const ext = img.src.match(/\.(jpg|jpeg|png)$/i)[0];
+          
+          // 假設有不同尺寸的圖片版本
+          const srcset = `
+            ${baseSrc}-small${ext} 480w,
+            ${baseSrc}${ext} 800w,
+            ${baseSrc}-large${ext} 1200w
+          `.trim();
+          
+          // 只在圖片存在多個版本時設定 srcset
+          if (img.naturalWidth > 800) {
+            img.sizes = '(max-width: 480px) 480px, (max-width: 800px) 800px, 1200px';
+          }
+        }
+      });
+    }
+    
+    // 初始化
+    function init() {
+      // DOM 載入完成後執行
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', onDOMReady);
+      } else {
+        onDOMReady();
+      }
+      
+      // 頁面完全載入後執行
+      window.addEventListener('load', onPageLoad);
+    }
+    
+    function onDOMReady() {
+      optimizeImages();
+      setupLazyLoading();
+      optimizeCarousel();
+    }
+    
+    function onPageLoad() {
+      addImageStructuredData();
+      setupResponsiveImages();
+    }
+    
+    // 啟動優化
+    init();
+  })();
+</script>
+
+<!-- 增強的圖片樣式 -->
+<style>
+  /* 圖片基礎樣式 */
+  img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+  }
+  
+  /* 懶載入動畫 */
+  img.lazy-loading {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  img.loaded {
+    opacity: 1;
+  }
+  
+  /* 載入中的骨架屏效果 */
+  img:not(.loaded) {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+  
+  @keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+  
+  /* 圖片容器優化 */
+  .image-wrapper {
+    position: relative;
+    overflow: hidden;
+    background-color: #f5f5f5;
+  }
+  
+  .image-wrapper::before {
+    content: '';
+    display: block;
+    padding-top: 75%; /* 4:3 比例 */
+  }
+  
+  .image-wrapper img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  /* 高效能動畫 */
+  .image-hover {
+    transform: translateZ(0);
+    will-change: transform;
+  }
+  
+  .image-hover:hover {
+    transform: scale(1.05) translateZ(0);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  /* 響應式圖片容器 */
+  picture {
+    display: block;
+    line-height: 0;
+  }
+  
+  /* 輪播圖片優化 */
+  .carousel img {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+  
+  /* 避免圖片拉伸 */
+  img.contain {
+    object-fit: contain;
+  }
+  
+  img.cover {
+    object-fit: cover;
+  }
+  
+  /* 列印優化 */
+  @media print {
+    img {
+      max-width: 100% !important;
+      page-break-inside: avoid;
+    }
+  }
+  
+  /* 暗色模式支援 */
+  @media (prefers-color-scheme: dark) {
+    img {
+      opacity: 0.9;
+    }
+    
+    img:hover {
+      opacity: 1;
+    }
+  }
+</style>

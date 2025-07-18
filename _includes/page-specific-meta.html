@@ -1,0 +1,55 @@
+<!-- Page-specific meta tags for enhanced SEO -->
+{% comment %}
+  This file provides page-specific meta tags without affecting visual presentation
+{% endcomment %}
+
+<!-- Page Type Detection and Specific Meta Tags -->
+{% if page.collection == "rooms" %}
+  <!-- Accommodation/Room specific meta tags -->
+  <meta property="product:price:amount" content="{{ page.weekday_price }}">
+  <meta property="product:price:currency" content="TWD">
+  <meta property="business:contact_data:street_address" content="苗栗縣泰安鄉中興村2鄰31號">
+  <meta property="business:contact_data:locality" content="泰安鄉">
+  <meta property="business:contact_data:region" content="苗栗縣">
+  <meta property="business:contact_data:postal_code" content="365">
+  <meta property="business:contact_data:country_name" content="Taiwan">
+{% endif %}
+
+{% if page.url == "/announcements.html" or page.collection == "announcements" %}
+  <!-- News/Announcement specific meta tags -->
+  <meta property="article:section" content="公告">
+  <meta property="article:tag" content="密式旅行,最新消息,公告">
+{% endif %}
+
+{% if page.url == "/" %}
+  <!-- Homepage specific meta tags -->
+  <meta name="google-site-verification" content="your-verification-code">
+  <meta property="og:type" content="business.business">
+  <meta property="business:hours:day" content="monday">
+  <meta property="business:hours:start" content="09:00">
+  <meta property="business:hours:end" content="21:00">
+{% endif %}
+
+<!-- Enhanced mobile meta tags -->
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="format-detection" content="telephone=no">
+
+<!-- Additional SEO meta tags -->
+<meta name="rating" content="general">
+<meta name="distribution" content="global">
+<meta name="revisit-after" content="7 days">
+{% if page.date %}
+<meta name="last-modified" content="{{ page.date | date: '%Y-%m-%d' }}">
+{% endif %}
+
+<!-- Geo targeting for local SEO -->
+<meta name="geo.country" content="TW">
+<meta name="geo.placename" content="Miaoli County">
+<meta name="language" content="Traditional Chinese">
+
+<!-- Social media specific tags -->
+<meta property="fb:app_id" content="">
+<meta name="twitter:site" content="@misstravel">
+<meta name="twitter:creator" content="@misstravel">

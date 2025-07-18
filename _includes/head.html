@@ -10,16 +10,20 @@
 	{% if page.keywords %}
 	<meta name="keywords" content="{{ page.keywords }}">
 	{% endif %}
-	<!-- Meta robots -->
-	<meta name="robots" content="index, follow">
+	<!-- Dynamic robots meta tags -->
+	{% include robots-meta.html %}
 	<!-- Enhanced SEO Tags -->
 	{% include enhanced-seo-tags.html %}
+	<!-- Page-specific meta tags -->
+	{% include page-specific-meta.html %}
 	<!-- RSS Feed -->
 	<link rel="alternate" type="application/rss+xml" title="{{ site.title }} RSS Feed" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
 	<!-- Critical CSS -->
 	{% include critical-css.html %}
 	<!-- Performance Optimization -->
 	{% include performance-optimization.html %}
+	<!-- SEO Performance Boost -->
+	{% include seo-performance-boost.html %}
 	<!-- Preconnect to external resources -->
 	<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
 	<link rel="preconnect" href="https://maxcdn.bootstrapcdn.com" crossorigin>

@@ -50,6 +50,7 @@
   "alternateName": "Misstravel",
   "url": "{{ site.url }}",
   "logo": "{{ site.url }}{{ site.logo }}",
+  "image": "{{ site.url }}{{ site.banner_image | default: '/assets/images/banner.jpg' }}",
   "sameAs": [
     {% for social in site.socials %}
       {% if social[1] and social[1] != "" %}
@@ -109,4 +110,28 @@
   ]
 }
 </script>
+{% endif %}
+
+<!-- Additional Performance Hints -->
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.google.com">
+<link rel="preconnect" href="https://www.gstatic.com" crossorigin>
+
+<!-- Resource Hints for Critical Resources -->
+<link rel="preload" as="style" href="{{ "assets/css/main.css" | relative_url }}">
+<link rel="preload" as="image" href="{{ site.baseurl }}/assets/images/banner.jpg" media="(min-width: 768px)">
+
+<!-- Pinterest Verification (if needed) -->
+{% if site.pinterest_verify %}
+<meta name="p:domain_verify" content="{{ site.pinterest_verify }}">
+{% endif %}
+
+<!-- Bing Verification (if needed) -->
+{% if site.bing_verify %}
+<meta name="msvalidate.01" content="{{ site.bing_verify }}">
+{% endif %}
+
+<!-- Yandex Verification (if needed) -->
+{% if site.yandex_verify %}
+<meta name="yandex-verification" content="{{ site.yandex_verify }}">
 {% endif %}

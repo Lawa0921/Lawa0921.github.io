@@ -64,6 +64,12 @@ sitemap:
       <image:caption>{{ room.description | xml_escape }}</image:caption>
     </image:image>
     {% endif %}
+    {% for image in room.images limit:5 %}
+    <image:image>
+      <image:loc>{{ site.url }}/{{ image }}</image:loc>
+      <image:title>{{ room.title | xml_escape }} - 照片 {{ forloop.index }}</image:title>
+    </image:image>
+    {% endfor %}
   </url>
   {% endfor %}
   

@@ -1,0 +1,226 @@
+<!-- 圖片 SEO 優化 -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // 自動為圖片生成更好的 alt 文字
+    const images = document.querySelectorAll('img');
+    
+    images.forEach(img => {
+      // 如果圖片沒有 alt 屬性或 alt 屬性為空
+      if (!img.alt || img.alt.trim() === '') {
+        const altText = generateAltText(img);
+        if (altText) {
+          img.alt = altText;
+        }
+      }
+      
+      // 為圖片添加 title 屬性以提升 SEO
+      if (!img.title && img.alt) {
+        img.title = img.alt;
+      }
+      
+      // 添加圖片載入錯誤處理
+      img.addEventListener('error', function() {
+        console.warn('圖片載入失敗:', img.src);
+        // 可以設定預設圖片
+        img.style.display = 'none';
+      });
+    });
+
+    // 為房型圖片添加特殊的 SEO 屬性
+    const roomImages = document.querySelectorAll('.carousel-item img, .room-image img');
+    roomImages.forEach(img => {
+      // 添加 schema.org 微標記
+      img.setAttribute('itemprop', 'image');
+      
+      // 確保房型圖片有適當的 alt 文字
+      if (img.alt && !img.alt.includes('密式旅行')) {
+        img.alt = img.alt + ' - 密式旅行住宿實景';
+      }
+    });
+
+    // 為主要圖片添加 JSON-LD 結構化資料
+    addImageStructuredData();
+  });
+
+  function generateAltText(img) {
+    const src = img.src;
+    const fileName = src.split('/').pop().split('.')[0];
+    
+    // 根據檔案名稱和路徑生成 alt 文字
+    if (src.includes('campsite')) {
+      const siteNumber = fileName.match(/\d+/);
+      return `露營區${siteNumber ? siteNumber[0] : ''}號營位 - 密式旅行露營環境實景`;
+    }
+    
+    if (src.includes('log_cabin')) {
+      const cabinNumber = fileName.match(/\d+/);
+      return `小木屋${cabinNumber ? cabinNumber[0] : ''}號 - 密式旅行木屋住宿環境`;
+    }
+    
+    if (src.includes('suite')) {
+      const suiteNumber = fileName.match(/\d+/);
+      return `套房${suiteNumber ? suiteNumber[0] : ''}號 - 密式旅行高級套房住宿`;
+    }
+    
+    if (src.includes('gallery')) {
+      return '密式旅行園區環境與設施照片';
+    }
+    
+    if (src.includes('menu') || src.includes('set_menu')) {
+      return '密式旅行桌遊咖啡廳菜單與餐點';
+    }
+    
+    if (src.includes('banner') || src.includes('landing')) {
+      return '密式旅行露營區美景與環境概覽';
+    }
+    
+    if (src.includes('map')) {
+      return '密式旅行園區地圖與位置資訊';
+    }
+    
+    if (src.includes('guide')) {
+      return '密式旅行園區導覽與設施介紹';
+    }
+    
+    // 預設情況
+    return '密式旅行 - 苗栗泰安鄉露營區住宿照片';
+  }
+
+  function addImageStructuredData() {
+    const mainImages = document.querySelectorAll('img[src*="main"], .carousel-item:first-child img');
+    
+    if (mainImages.length > 0) {
+      const imageList = Array.from(mainImages).map(img => ({
+        "@type": "ImageObject",
+        "url": img.src,
+        "caption": img.alt,
+        "name": img.alt,
+        "contentUrl": img.src,
+        "width": img.naturalWidth || "800",
+        "height": img.naturalHeight || "600",
+        "encodingFormat": img.src.includes('.jpg') ? "image/jpeg" : 
+                         img.src.includes('.png') ? "image/png" : 
+                         img.src.includes('.webp') ? "image/webp" : "image/jpeg"
+      }));
+
+      const script = document.createElement('script');
+      script.type = 'application/ld+json';
+      script.textContent = JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "ImageGallery",
+        "name": "密式旅行住宿圖片集",
+        "description": "密式旅行露營區各式住宿房型與園區環境照片",
+        "image": imageList
+      });
+      
+      document.head.appendChild(script);
+    }
+  }
+
+  // 為 Facebook 和 Twitter 優化圖片分享
+  function optimizeSocialSharing() {
+    const currentPageImages = document.querySelectorAll('img[src*="main"]');
+    
+    if (currentPageImages.length > 0) {
+      const mainImage = currentPageImages[0];
+      
+      // 動態添加 Open Graph 圖片標籤
+      const ogImage = document.createElement('meta');
+      ogImage.setAttribute('property', 'og:image');
+      ogImage.setAttribute('content', mainImage.src);
+      document.head.appendChild(ogImage);
+      
+      // 添加 Twitter Card 圖片
+      const twitterImage = document.createElement('meta');
+      twitterImage.setAttribute('name', 'twitter:image');
+      twitterImage.setAttribute('content', mainImage.src);
+      document.head.appendChild(twitterImage);
+    }
+  }
+
+  // 在圖片載入完成後執行社群分享優化
+  window.addEventListener('load', optimizeSocialSharing);
+
+  // 圖片懶載入優化
+  function optimizeLazyLoading() {
+    const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+    
+    // 為懶載入圖片添加 placeholder
+    lazyImages.forEach(img => {
+      if (!img.style.backgroundColor) {
+        img.style.backgroundColor = '#f0f0f0';
+        img.style.minHeight = '200px';
+      }
+      
+      // 圖片載入完成後移除 placeholder 樣式
+      img.addEventListener('load', function() {
+        this.style.backgroundColor = '';
+        this.style.minHeight = '';
+      });
+    });
+  }
+
+  optimizeLazyLoading();
+</script>
+
+<!-- CSS 優化圖片顯示效果 -->
+<style>
+  /* 圖片容器優化 */
+  .image-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  
+  /* 圖片懸停效果 */
+  .image-container img {
+    transition: transform 0.3s ease;
+  }
+  
+  .image-container:hover img {
+    transform: scale(1.05);
+  }
+  
+  /* 響應式圖片 */
+  img.responsive {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  /* 房型圖片特殊樣式 */
+  .room-carousel img {
+    object-fit: cover;
+    width: 100%;
+    height: 400px;
+  }
+  
+  @media (max-width: 768px) {
+    .room-carousel img {
+      height: 250px;
+    }
+  }
+  
+  /* 載入中的圖片 placeholder */
+  img[loading="lazy"] {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+  }
+  
+  @keyframes loading {
+    0% {
+      background-position: 200% 0;
+    }
+    100% {
+      background-position: -200% 0;
+    }
+  }
+  
+  /* 圖片載入完成後停止動畫 */
+  img[loading="lazy"].loaded {
+    animation: none;
+    background: none;
+  }
+</style>
