@@ -24,7 +24,7 @@
                     <ol class="carousel-indicators">
                       <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                       {% for image in page.images %}
-                        <li data-target="#carouselExampleIndicators" data-slide-to="{{ forloop.index + 1 }}" class="active"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="{{ forloop.index }}" class="active"></li>
                       {% endfor %}
                     </ol>
                     <div class="carousel-inner">
