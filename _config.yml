@@ -60,6 +60,8 @@ sass:
   load_paths:
     - _sass
   style: compressed
+  quiet_deps: true # Suppress deprecation warnings from dependencies
+  silence_deprecations: ['import'] # Silence specific deprecation warnings
 
 # server settings
 port: 4200

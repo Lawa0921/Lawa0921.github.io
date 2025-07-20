@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'jekyll', '~> 4.3'
+gem 'logger' # Added to prevent Ruby 3.5+ warning
 
 group :jekyll_plugins do
   gem 'jekyll-timeago', '~> 0.13.1'
