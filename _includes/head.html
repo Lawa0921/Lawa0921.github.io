@@ -10,16 +10,10 @@
 	{% if page.keywords %}
 	<meta name="keywords" content="{{ page.keywords }}">
 	{% endif %}
-	<!-- Dynamic robots meta tags -->
-	{% include robots-meta.html %}
 	<!-- Enhanced SEO Tags -->
 	{% include enhanced-seo-tags.html %}
-	<!-- Page-specific meta tags -->
-	{% include page-specific-meta.html %}
 	<!-- RSS Feed -->
 	<link rel="alternate" type="application/rss+xml" title="{{ site.title }} RSS Feed" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
-	<!-- Critical CSS -->
-	{% include critical-css.html %}
 	<!-- Performance Optimization -->
 	{% include performance-optimization.html %}
 	<!-- SEO Performance Boost -->
@@ -36,8 +30,5 @@
 	<link rel="manifest" href="{{ site.baseurl }}/assets/images/site.webmanifest">
 	<link rel="mask-icon" href="{{ site.baseurl }}/assets/images/safari-pinned-tab.svg" color="#5bbad5">
 	{% if page.url == "/" %}
-		{% include schema-lodging.html %}
-	{% endif %}
-	{% include breadcrumb-schema.html %}
-	{% include menu-fix.html %}
+		{% endif %}
 </head>
